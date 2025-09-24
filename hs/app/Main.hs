@@ -12,7 +12,7 @@ import HS2Lazy.PatComp (compilePatternMatch)
 import HS2Lazy.Optimizer (optimizeExpr)
 import HS2Lazy.Builtin (expandBltin)
 import HS2Lazy.PPrint (showProgram)
-import HS2Lazy.Run
+import HS2Lazy.Facade
 
 main :: IO ()
 main = do

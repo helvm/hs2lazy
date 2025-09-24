@@ -1,4 +1,4 @@
-module HS2Lazy.Run where
+module HS2Lazy.Facade where
 import Data.Char (toLower)
 import System.Environment
 import System.IO

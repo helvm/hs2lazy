@@ -53,7 +53,7 @@ pcExpr (Ap e1 e2) = do e1' <- pcExpr e1
 pcExpr (Let bg e) = do bg' <- pcBindGroup bg
                        e'  <- pcExpr e
                        return (Let bg' e')
-pcExpr (Lambda a) = liftM Lambda (pcAlts [a])
+pcExpr (Lambda a) = fmap Lambda (pcAlts [a])
 pcExpr c@(Case e pes) =
     do e' <- pcExpr e
        case e' of

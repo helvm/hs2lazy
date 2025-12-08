@@ -1,17 +1,15 @@
 module GoldenSpec (test_golden) where
 
-import HS2Lazy.Facade
-
-import Test.Tasty (TestTree, testGroup)
-import Test.Tasty.Golden (goldenVsString, findByExtension)
 import qualified Data.ByteString.Lazy as LBS
 import qualified Data.ByteString.Lazy.UTF8 as LBS
-
+import HS2Lazy.Facade
 import System.FilePath (takeBaseName, (<.>), (</>))
 import System.IO.Unsafe (unsafePerformIO)
+import Test.Tasty (TestTree, testGroup)
+import Test.Tasty.Golden (findByExtension, goldenVsString)
 
 inputFiles :: [FilePath]
-inputFiles = unsafePerformIO (findByExtension [".hs"]  ("examples" </> "apps"))
+inputFiles = unsafePerformIO (findByExtension [".hs"] ("examples" </> "apps"))
 
 preludeIO :: IO String
 preludeIO = LBS.toString <$> LBS.readFile ("examples" </> "libs" </> "hs2lazy-prelude.hs")
@@ -25,7 +23,8 @@ transform source = do
 
 test_golden :: TestTree
 test_golden =
-  testGroup "Golden tests"
+  testGroup
+    "Golden tests"
     [ goldenVsString
         (takeBaseName inFile)
         (".golden" </> takeBaseName inFile <.> "lazy")

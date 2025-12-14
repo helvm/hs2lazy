@@ -29,3 +29,6 @@ clean:
 
 examples: hs2lazy
 	make -C examples
+
+ormolu:
+	find . -name "*.hs" -print0 | xargs -0 ormolu -i

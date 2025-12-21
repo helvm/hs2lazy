@@ -36,6 +36,7 @@ library
       HS2Lazy.Static
       HS2Lazy.Syntax
       HS2Lazy.Type
+
   other-modules:
       Paths_hs2lazy
   hs-source-dirs:
@@ -49,6 +50,11 @@ library
     , rio >=0.1.12.0
     , relude >= 1.2.2.2
   default-language: Haskell2010
+  mixins:
+      base hiding (Prelude)
+    , relude (Relude as Prelude, Relude.Extra, Relude.Unsafe, Data.Text)
+  default-extensions:
+    OverloadedStrings
 
 executable hs2lazy-exe
   main-is: Main.hs
@@ -66,6 +72,8 @@ executable hs2lazy-exe
     , parsec
     , rio >=0.1.12.0
   default-language: Haskell2010
+  default-extensions:
+    OverloadedStrings
 
 test-suite hs2lazy-test
   type: exitcode-stdio-1.0
@@ -94,3 +102,5 @@ test-suite hs2lazy-test
     , tasty-hunit
     , utf8-string
   default-language: Haskell2010
+  default-extensions:
+    OverloadedStrings

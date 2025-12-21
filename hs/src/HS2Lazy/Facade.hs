@@ -21,13 +21,13 @@ run source =
   let (p, as, p', e, ce) = compile source
    in insertNewline 80 $ map toLower $ show e
 
-compile s = (prog, as ++ a, expr2, ski2, ce')
+compile s = (prog, as <> a, expr2, ski2, ce')
   where
     (prog, is, ce', as) = S.analyze ce topdecls
     topdecls =
       P.Decl (P.VarDecl ("@main", [], P.Rhs (P.Var "main") []))
         : (P.parse (L.lexer "argf" s))
-    as' = as ++ T.preludeAssumptions
+    as' = as <> T.preludeAssumptions
     (a, prog') = T.tiProgram ce' as' prog
     prog2 = ([], [is]) : prog'
     prog3 = compilePatternMatch prog2
@@ -41,4 +41,4 @@ insertNewline :: Int -> String -> String
 insertNewline n [] = []
 insertNewline n s =
   let (line, s') = splitAt n s
-   in (line ++ '\n' : insertNewline n s')
+   in (line <> '\n' : insertNewline n s')

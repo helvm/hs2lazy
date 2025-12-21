@@ -1,8 +1,10 @@
 module HS2Lazy.Compiler where
 
+import Data.List (init, last, (!!))
 import HS2Lazy.PPrint ()
 import HS2Lazy.PatComp (compilePatternMatch)
 import HS2Lazy.Syntax
+import Prelude hiding (Alt, Ap, init, last)
 
 -- for (Show Expr)
 
@@ -27,12 +29,12 @@ expandCon (Ap e1 e2) = Ap (expandCon e1) (expandCon e2)
 expandCon (Let bg e) = Let (expandConBG bg) (expandCon e)
 expandCon (Lambda (vs, Rhs e)) = Lambda (vs, Rhs (expandCon e))
 expandCon (ESign e sc) = (ESign (expandCon e) sc)
-expandCon (Con con) = Lambda ([PVar v | v <- as ++ fs], Rhs body)
+expandCon (Con con) = Lambda ([PVar v | v <- as <> fs], Rhs body)
   where
-    as = ["@a" ++ show i | i <- [1 .. conArity con]]
-    fs = ["@f" ++ show i | i <- [1 .. (tyconNumCon $ conTycon con)]]
+    as = ["@a" <> show i | i <- [1 .. conArity con]]
+    fs = ["@f" <> show i | i <- [1 .. (tyconNumCon $ conTycon con)]]
     body = ap (Var $ fs !! (tag - 1)) [Var v | v <- as]
-    tag = if conTag con < 1 then error ("bad tag " ++ conName con) else conTag con
+    tag = if conTag con < 1 then error ("bad tag " <> toText (conName con)) else conTag con
 
 expandConBG :: BindGroup -> BindGroup
 expandConBG (es, iss) = (es', map expandConImpls iss)
@@ -68,7 +70,7 @@ compileExpr (Lambda a) = compileAlt a
 compileExpr (Var i) = SVar i
 compileExpr (Lit l) = SLit l
 compileExpr (Con con) = SCon (conTag con) (conArity con)
-compileExpr e = error ("compileExpr: " ++ show e)
+compileExpr e = error ("compileExpr: " <> show e)
 
 compileDef :: (Id, [Alt]) -> (Id, SKI)
 compileDef (i, [a]) = (i, compileAlt a)
@@ -96,7 +98,7 @@ uAbs (i : is) e = SVar "U" `SAp` abstract i (uAbs is e)
 compileAlt :: Alt -> SKI
 compileAlt ([], Rhs e) = compileExpr e
 compileAlt (PVar v : as, e) = abstract v (compileAlt (as, e))
-compileAlt (p : ps, e) = error ("malformed pattern " ++ show p)
+compileAlt (p : ps, e) = error ("malformed pattern " <> show p)
 
 abstract :: Id -> SKI -> SKI
 abstract i v@(SVar i')

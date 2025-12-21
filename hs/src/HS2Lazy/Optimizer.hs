@@ -1,6 +1,7 @@
 module HS2Lazy.Optimizer where
 
 import HS2Lazy.Syntax
+import Prelude hiding (Alt, Ap)
 
 optimizeExpr :: Expr -> Expr
 optimizeExpr = optExpr

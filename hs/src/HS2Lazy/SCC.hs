@@ -2,7 +2,7 @@ module HS2Lazy.SCC (scc) where
 
 import Control.Monad (when)
 import Data.Array
-import Data.List (elemIndex)
+import Data.List (elemIndex, foldl, (!!))
 
 data SM s a = SM (s -> (a, s))
 

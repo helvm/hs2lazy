@@ -10,12 +10,15 @@
 --  modified by irori <irorin@gmail.com>
 
 module HS2Lazy.Type where
-import Data.List(nub, (\\), intersect, union, partition)
+import Data.List(nub, (\\), intersect, union, partition, head)
 import Control.Monad(msum)
 import HS2Lazy.Syntax
+import           Data.List      (foldl, foldl1, foldr1, intersect, lookup, nub, partition, union, (!!), (\\))
+
+import           Prelude        hiding (Alt, Ap, Type, lift, lookupEnv, modify, newTVar, head)
 
 enumId  :: Int -> Id
-enumId n = "v" ++ show n
+enumId n = "v" <> show n
 
 -- Substitutions
 nullSubst  :: Subst
@@ -26,10 +29,10 @@ u +-> t     = [(u, t)]
 
 infixr 4 @@
 (@@)       :: Subst -> Subst -> Subst
-s1 @@ s2    = [ (u, apply s1 t) | (u,t) <- s2 ] ++ s1
+s1 @@ s2    = [ (u, apply s1 t) | (u,t) <- s2 ] <> s1
 
 merge      :: MonadFail m => Subst -> Subst -> m Subst
-merge s1 s2 = if agree then return (s1++s2) else fail "merge fails"
+merge s1 s2 = if agree then return (s1<>s2) else fail "merge fails"
  where agree = all (\v -> apply s1 (TVar v) == apply s2 (TVar v))
                    (map fst s1 `intersect` map fst s2)
 
@@ -47,7 +50,7 @@ mgu t (TSynonym s ts) = mgu t (unsynonym s ts)
 mgu (TCon tc1) (TCon tc2)
            | tc1==tc2 = return nullSubst
 mgu t1 t2             = fail ("types do not unify: "
-			      ++ show t1 ++ " " ++ show t2)
+			      <> show t1 <> " " <> show t2)
 
 varBind u t | t == TVar u      = return nullSubst
             | u `elem` tv t    = fail "occurs check fails"
@@ -83,7 +86,7 @@ lift m (IsIn i t) (IsIn i' t')
 super     :: ClassEnv -> Id -> [Id]
 super ce i = case classes ce i of
                Just (is, its, ms) -> is
-               Nothing -> error ("super " ++ i)
+               Nothing -> error ("super " <> toText i)
 
 insts     :: ClassEnv -> Id -> [Inst]
 insts ce i = case classes ce i of Just (is, its, ms) -> its
@@ -110,25 +113,25 @@ addClass :: Id -> [Id] -> [Assump] -> EnvTransformer
 addClass i is ms ce
  | defined (classes ce i)              = fail "class already defined"
  | any (not . defined . classes ce) is = fail "superclass not defined"
- | otherwise = return (modify (ce{assumps = assumps ce ++ ms}) i (is, [], ms)) 
+ | otherwise = return (modify (ce{assumps = assumps ce <> ms}) i (is, [], ms))
 
 addInst :: [Pred] -> Pred -> Expr -> EnvTransformer
 addInst ps p@(IsIn i _) dict ce
- | not (defined (classes ce i)) = error ("no class for instance " ++ i)
- | any (overlap p) qs           = error ("overlapping instance " ++ i)
+ | not (defined (classes ce i)) = error ("no class for instance " <> toText i)
+ | any (overlap p) qs           = error ("overlapping instance " <> toText i)
  | otherwise                    = return (modify ce i c)
    where its = insts ce i
          qs  = [ q | (_ :=> q, _) <- its ]
          c   = (super ce i, (ps:=>p, dict) : its, methods ce i)
 
 addImpls :: [Impl] -> EnvTransformer
-addImpls is ce = return (ce { impls = impls ce ++ is })
+addImpls is ce = return (ce { impls = impls ce <> is })
 
 addExpls :: [Expl] -> EnvTransformer
-addExpls es ce = return (ce { expls = expls ce ++ es })
+addExpls es ce = return (ce { expls = expls ce <> es })
 
 addAssumps :: [Assump] -> EnvTransformer
-addAssumps is ce = return (ce { assumps = assumps ce ++ is })
+addAssumps is ce = return (ce { assumps = assumps ce <> is })
 
 overlap       :: Pred -> Pred -> Bool
 overlap p q    = defined (mguPred p q)
@@ -178,13 +181,13 @@ toHnfs ce ps = do pss <- mapM (toHnf ce) ps
 toHnf                 :: MonadFail m => ClassEnv -> Pred -> m [Pred]
 toHnf ce p | inHnf p   = return [p]
            | otherwise = case byInst ce p of
-                           Nothing -> fail ("context reduction " ++ show p)
+                           Nothing -> fail ("context reduction " <> show p)
                            Just (ps, _) -> toHnfs ce ps
 
 simplify   :: ClassEnv -> [Pred] -> [Pred]
 simplify ce = loop []
  where loop rs []                            = rs
-       loop rs (p:ps) | entail ce (rs++ps) p = loop rs ps
+       loop rs (p:ps) | entail ce (rs<>ps) p = loop rs ps
                       | otherwise            = loop (p:rs) ps
 
 reduce      :: MonadFail m => ClassEnv -> [Pred] -> m [Pred]
@@ -215,7 +218,7 @@ instance Monad TI where
                                         in  gx s' m)
 
 instance MonadFail TI where
-  fail msg = TI (\_ _ -> error msg)
+  fail msg = TI (\_ _ -> error $ toText msg)
 
 runTI       :: TI a -> a
 runTI (TI f) = x where (s,n,x) = f nullSubst 0
@@ -267,17 +270,17 @@ makeEnv :: [Assump] -> Env
 makeEnv as = Env as []
 
 extend :: Env -> [Assump] -> Env
-extend (Env as ras) as' = Env (as' ++ as) ras
+extend (Env as ras) as' = Env (as' <> as) ras
 
 extendRec :: Env -> [RecAssump] -> Env
-extendRec (Env as ras) ras' = Env as (ras' ++ ras)
+extendRec (Env as ras) ras' = Env as (ras' <> ras)
 
 lookupEnv :: MonadFail m => Env -> Id -> m (Either Scheme Type)
 lookupEnv (Env as ras) i =
     case lookup i ras of
       Just t  -> return (Right t)
       Nothing -> find as
-        where find []             = fail ("unbound identifier: " ++ i)
+        where find []             = fail ("unbound identifier: " <> i)
               find ((i':>:sc):as) = if i==i' then return (Left sc) else find as
 
 -- Basic definitions for type inference
@@ -309,7 +312,7 @@ tiPat (PCon con pats)
 	 t'           <- newTVar Star
 	 (qs :=> t)   <- freshInst (conScheme con)
 	 unify t (foldr fn t' ts)
-	 return (ps ++ qs, as, t')
+	 return (ps <> qs, as, t')
 
 tiPats     :: [Pat] -> TI ([Pred], [Assump], [Type])
 tiPats pats = do psasts <- mapM tiPat pats
@@ -337,10 +340,10 @@ tiExpr ce env (Ap e f)      = do (ps, te, e') <- tiExpr ce env e
                                  (qs, tf, f') <- tiExpr ce env f
                                  t            <- newTVar Star
                                  unify (tf `fn` t) te
-                                 return (ps ++ qs, t, Ap e' f')
+                                 return (ps <> qs, t, Ap e' f')
 tiExpr ce env (Let bg e)    = do (ps, as, bg') <- tiBindGroup ce env bg
                                  (qs, t, e')   <- tiExpr ce (extend env as) e
-                                 return (ps ++ qs, t, Let bg' e')
+                                 return (ps <> qs, t, Let bg' e')
 
 tiExpr ce env (Case e pses) = do (ps, te, e') <- tiExpr ce env e
 			         tf           <- newTVar Star
@@ -348,7 +351,7 @@ tiExpr ce env (Case e pses) = do (ps, te, e') <- tiExpr ce env e
 			         unify (te `fn` t) tf
 			         (qs, alts')  <- tiAlts ce env alts tf
                                  let pses' = zip (map fst pses) (map snd alts')
-			         return (ps ++ qs, t, Case e' pses')
+			         return (ps <> qs, t, Case e' pses')
     where alts = [([p], e) | (p, e) <- pses]
 
 tiExpr ce env (Lambda alt)  = do (ps, t, alt') <- tiAlt ce env alt
@@ -380,7 +383,7 @@ tiAlt :: Infer Alt Type
 tiAlt ce env (pats, rhs) =
     do (ps, as, ts) <- tiPats pats
        (qs, t, rhs')  <- tiRhs ce (extend env as) rhs
-       return (ps ++ qs, foldr fn t ts, (pats, rhs'))
+       return (ps <> qs, foldr fn t ts, (pats, rhs'))
 
 tiAlts          :: ClassEnv -> Env -> [Alt] -> Type -> TI ([Pred], [Alt])
 tiAlts ce env alts t = do r <- mapM (tiAlt ce env) alts
@@ -399,7 +402,7 @@ tiRhs ce env (Rhs e) =
 tiRhs ce env (Where bg rhs) =
     do (ps, as, bg') <- tiBindGroup ce env bg
        (qs, t, rhs') <- tiRhs ce (extend env as) rhs
-       return (ps ++ qs, t, Where bg' rhs')
+       return (ps <> qs, t, Where bg' rhs')
 
 tiRhs ce env (Guarded guards) =
     do t <- newTVar Star
@@ -412,7 +415,7 @@ tiGuard ce env (cond, e) =
     do (ps, tcond, cond') <- tiExpr ce env cond
        unify tcond tBool
        (qs, te, e') <- tiExpr ce env e
-       return (ps ++ qs, te, (cond', e'))
+       return (ps <> qs, te, (cond', e'))
 
 -----------------------------------------------------------------------------
 
@@ -420,7 +423,7 @@ split :: MonadFail m => ClassEnv -> [Tyvar] -> [Tyvar] -> [Pred]
                       -> m ([Pred], [Pred])
 split ce fs gs ps = do ps' <- reduce ce ps
                        let (ds, rs) = partition (all (`elem` fs) . tv) ps'
-                       rs' <- defaultedPreds ce (fs++gs) rs
+                       rs' <- defaultedPreds ce (fs<>gs) rs
                        return (ds, rs \\ rs')
 
 type Ambiguity       = (Tyvar, [Pred])
@@ -434,7 +437,7 @@ numClasses  = ["Num", "Integral", "Floating", "Fractional",
 
 stdClasses :: [Id]
 stdClasses  = ["Eq", "Ord", "Show", "Read", "Bounded", "Enum", "Ix",
-               "Functor", "Monad", "MonadPlus"] ++ numClasses
+               "Functor", "Monad", "MonadPlus"] <> numClasses
 
 candidates           :: ClassEnv -> Ambiguity -> [Type]
 candidates ce (v, qs) = [ t' | let is = [ i | IsIn i t <- qs ]
@@ -476,7 +479,7 @@ resolve ce s recs ps alts = map resolveAlt alts
                              reSubst = s,
                              reClass = ce }
           dictParams = map PVar dictVars
-          resolveAlt (pats, rhs) = (dictParams ++ pats, resolveRhs env rhs)
+          resolveAlt (pats, rhs) = (dictParams <> pats, resolveRhs env rhs)
 
 resolveRhs :: ResolveEnv -> Rhs -> Rhs
 resolveRhs re (Rhs e) = Rhs (resolveExpr re e)
@@ -517,7 +520,7 @@ resolveSuper re pes@(_:_) p =
     case lookup p pes' of
       Just e' -> Just e'
       Nothing -> resolveSuper re pes' p
-    where pes' = [(IsIn sup v, Var (cls ++ ">>" ++ sup) `Ap` e)
+    where pes' = [(IsIn sup v, Var (cls <> ">>" <> sup) `Ap` e)
                   | (IsIn cls v, e) <- pes, sup <- super (reClass re) cls]
 
 resolveBindGroup re (es, iss) = (es', iss')
@@ -540,8 +543,8 @@ tiExpl ce env (i, sc, alts)
                  alts''  = resolve ce s [] qs' alts'
              (ds, rs)   <- split ce fs gs ps'
              if sc /= sc' then
-                 fail ("signature too general: expected" ++ show sc
-                       ++ ", but inferred " ++ show sc')
+                 fail ("signature too general: expected" <> show sc
+                       <> ", but inferred " <> show sc')
                else if not (null rs) then
                  fail "context too weak"
                else
@@ -574,7 +577,7 @@ tiImpls ce env bs =
                recenv = zip is (repeat [])
                altss' = map (resolve ce s recenv [] . snd) pssass
                bs'    = zip is altss'
-           in return (ds ++ rs, zipWith (:>:) is scs, bs')
+           in return (ds <> rs, zipWith (:>:) is scs, bs')
          else
            let scs    = map (quantify gs . (rs :=>)) ts'
                recenv = zip is (repeat rs)
@@ -588,14 +591,14 @@ tiBindGroup :: Infer BindGroup [Assump]
 tiBindGroup ce env (es,iss) =
   do let as = [ v:>:sc | (v,sc,alts) <- es ]
      (ps, as', iss') <- tiSeq tiImpls ce (extend env as) iss
-     qses_s          <- mapM (tiExpl ce (extend env (as'++as))) es
-     return (ps ++ concat (map fst qses_s), as' ++ as, (map snd qses_s, iss'))
+     qses_s          <- mapM (tiExpl ce (extend env (as'<>as))) es
+     return (ps <> concat (map fst qses_s), as' <> as, (map snd qses_s, iss'))
 
 tiSeq                  :: Infer bg [Assump] -> Infer [bg] [Assump]
 tiSeq ti ce env []       = return ([], [], [])
 tiSeq ti ce env (bs:bss) = do (ps, as, bs')   <- ti ce env bs
                               (qs, as', bss') <- tiSeq ti ce (extend env as) bss
-                              return (ps ++ qs, as' ++ as, bs':bss')
+                              return (ps <> qs, as' <> as, bs':bss')
 
 
 -- Type Inference for Whole Programs
@@ -628,7 +631,7 @@ preludeAssumptions = [
  "||" :>: (toScheme (tBool `fn` tBool `fn` tBool)),
  "ord":>: (toScheme (tChar `fn` tInt)),
  "chr":>: (toScheme (tInt `fn` tChar)),
- "++" :>: (quantifyAll' (list a `fn` list a `fn` list a)),
+ "<>" :>: (quantifyAll' (list a `fn` list a `fn` list a)),
  "."  :>: (quantifyAll' ((b `fn` c) `fn` (a `fn` b) `fn` a `fn` c)),
  "error" :>: (quantifyAll' (list tChar `fn` a)),
  "hGetContents" :>: (toScheme (tInt `fn` list tChar)),

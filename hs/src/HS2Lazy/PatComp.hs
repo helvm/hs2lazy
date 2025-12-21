@@ -1,10 +1,10 @@
 module HS2Lazy.PatComp (compilePatternMatch, patBindings) where
 
-import Control.Monad hiding (ap)
-import Control.Monad.State hiding (ap)
+import Control.Monad (foldM, liftM)
 import Data.List
 import HS2Lazy.PPrint ()
 import HS2Lazy.Syntax
+import Prelude hiding (Alt, Ap, Const, head, init, last, tail)
 
 type PatComp = State Int
 
@@ -92,7 +92,7 @@ makeSel :: Const -> Int -> Expr -> Expr
 -- makeSel con i e = ap (Var "SEL") [Lit (LitInt i), e]
 makeSel con i e = expr
   where
-    vs = ["@@" ++ show v | v <- [1 .. (conArity con)]]
+    vs = ["@@" <> show v | v <- [1 .. (conArity con)]]
     body = Rhs $ Var $ vs !! (i - 1)
     receiver = Lambda ([PVar v | v <- vs], body)
     expr =
@@ -205,8 +205,8 @@ matchConClause (u : us) def (con, qs) =
     us' <- newVars k'
     body <-
       match
-        (us' ++ us)
-        [(ps' ++ ps, rhs) | (PCon c ps' : ps, rhs) <- qs]
+        (us' <> us)
+        [(ps' <> ps, rhs) | (PCon c ps' : ps, rhs) <- qs]
         def
     let receiver = Lambda ([PVar v | v <- us'], Rhs body)
         expr =

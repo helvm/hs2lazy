@@ -4,6 +4,9 @@ module HS2Lazy.Lexer where
 import Numeric (readOct, readHex)
 import Data.Char (isUpper, isLower)
 import qualified Text.ParserCombinators.Parsec.Pos as Pos
+import Prelude hiding (head, init, tail)
+import Data.List (head, init, tail)
+import Text.Read (read)
 }
 
 %wrapper "posn"
@@ -81,7 +84,7 @@ ide' "hiding" = TokenHiding
 ide' s@(c:_)
     | isUpper c = TokenConId s
     | isLower c = TokenId s
-ide' s = error ("unknown token " ++ s)
+ide' s = error ("unknown token " <> toText s)
 
 sym' ".." = TokenDotDot
 sym' "::" = TokenCoco

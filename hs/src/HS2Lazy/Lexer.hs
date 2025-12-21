@@ -5,6 +5,9 @@ module HS2Lazy.Lexer where
 import Numeric (readOct, readHex)
 import Data.Char (isUpper, isLower)
 import qualified Text.ParserCombinators.Parsec.Pos as Pos
+import Prelude hiding (head, init, tail)
+import Data.List (head, init, tail)
+import Text.Read (read)
 
 #if __GLASGOW_HASKELL__ >= 603
 #include "ghcconfig.h"
@@ -14,7 +17,7 @@ import qualified Text.ParserCombinators.Parsec.Pos as Pos
 #if __GLASGOW_HASKELL__ >= 503
 import Data.Array
 import Data.Char (ord)
-import Data.Array.Base (unsafeAt)
+import Data.Array.Base ()
 #else
 import Array
 import Char (ord)
@@ -148,7 +151,7 @@ alexScanTokens str = go (alexStartPos,'\n',[],str)
   where go inp@(pos,_,_,str) =
           case alexScan inp 0 of
                 AlexEOF -> []
-                AlexError ((AlexPn _ line column),_,_,_) -> error $ "lexical error at " ++ (show line) ++ " line, " ++ (show column) ++ " column"
+                AlexError ((AlexPn _ line column),_,_,_) -> error $ "lexical error at " <> (show line) <> " line, " <> (show column) <> " column"
                 AlexSkip  inp' len     -> go inp'
                 AlexToken inp' len act -> act pos (take len str) : go inp'
 
@@ -230,7 +233,7 @@ ide' "hiding" = TokenHiding
 ide' s@(c:_)
     | isUpper c = TokenConId s
     | isLower c = TokenId s
-ide' s = error ("unknown token " ++ s)
+ide' s = error ("unknown token " <> toText s)
 
 sym' ".." = TokenDotDot
 sym' "::" = TokenCoco

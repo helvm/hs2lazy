@@ -1,14 +1,12 @@
 name:                hs2lazy
 version:             0.1.0.0
-github:              "githubuser/hs2lazy"
-license:             BSD-3-Clause
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2026 Author name here"
+github:              "helvm/hs2lazy"
+author:              "Kamil Adam"
+maintainer:          "kamil.adam.zabinski@gmail.com"
 
 extra-source-files:
-- README.md
-- CHANGELOG.md
+- docs/README.md
+- docs/CHANGELOG.md
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package
@@ -17,7 +15,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/hs2lazy#readme>
+description:         Please see the README on GitHub at <https://github.com/helvm/hs2lazy#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -37,12 +35,12 @@ ghc-options:
 - -Wredundant-constraints
 
 library:
-  source-dirs: src
+  source-dirs: hs/src
 
 executables:
   hs2lazy-exe:
     main:                Main.hs
-    source-dirs:         app
+    source-dirs:         hs/app
     ghc-options:
     - -threaded
     - -rtsopts
@@ -53,7 +51,7 @@ executables:
 tests:
   hs2lazy-test:
     main:                Spec.hs
-    source-dirs:         test
+    source-dirs:         hs/test
     ghc-options:
     - -threaded
     - -rtsopts

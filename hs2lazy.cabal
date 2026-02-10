@@ -1,4 +1,4 @@
-cabal-version: 2.2
+cabal-version: 1.12
 
 -- This file has been generated from package.yaml by hpack version 0.38.1.
 --
@@ -6,21 +6,19 @@ cabal-version: 2.2
 
 name:           hs2lazy
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/hs2lazy#readme>
-homepage:       https://github.com/githubuser/hs2lazy#readme
-bug-reports:    https://github.com/githubuser/hs2lazy/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2026 Author name here
-license:        BSD-3-Clause
+description:    Please see the README on GitHub at <https://github.com/helvm/hs2lazy#readme>
+homepage:       https://github.com/helvm/hs2lazy#readme
+bug-reports:    https://github.com/helvm/hs2lazy/issues
+author:         Kamil Adam
+maintainer:     kamil.adam.zabinski@gmail.com
 build-type:     Simple
 extra-source-files:
-    README.md
-    CHANGELOG.md
+    docs/README.md
+    docs/CHANGELOG.md
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/hs2lazy
+  location: https://github.com/helvm/hs2lazy
 
 library
   exposed-modules:
@@ -28,7 +26,6 @@ library
       Compiler
       Lexer
       Lib
-      Main
       Optimizer
       Parser
       PatComp
@@ -39,10 +36,8 @@ library
       Type
   other-modules:
       Paths_hs2lazy
-  autogen-modules:
-      Paths_hs2lazy
   hs-source-dirs:
-      src
+      hs/src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       array
@@ -55,10 +50,8 @@ executable hs2lazy-exe
   main-is: Main.hs
   other-modules:
       Paths_hs2lazy
-  autogen-modules:
-      Paths_hs2lazy
   hs-source-dirs:
-      app
+      hs/app
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       array
@@ -74,10 +67,8 @@ test-suite hs2lazy-test
   other-modules:
       GoldenSpec
       Paths_hs2lazy
-  autogen-modules:
-      Paths_hs2lazy
   hs-source-dirs:
-      test
+      hs/test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-tool-depends:
       tasty-discover:tasty-discover

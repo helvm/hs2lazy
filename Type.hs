@@ -1,7 +1,7 @@
 -- Part of `Typing Haskell in Haskell', version of November 23, 2000
 -- Copyright (c) Mark P Jones and the Oregon Graduate Institute
 -- of Science and Technology, 1999-2000
--- 
+--
 -- This program is distributed as Free Software under the terms
 -- in the file "License" that is included in the distribution
 -- of this software, copies of which may be obtained from:
@@ -28,14 +28,14 @@ infixr 4 @@
 (@@)       :: Subst -> Subst -> Subst
 s1 @@ s2    = [ (u, apply s1 t) | (u,t) <- s2 ] ++ s1
 
-merge      :: Monad m => Subst -> Subst -> m Subst
+merge      :: MonadFail m => Subst -> Subst -> m Subst
 merge s1 s2 = if agree then return (s1++s2) else fail "merge fails"
  where agree = all (\v -> apply s1 (TVar v) == apply s2 (TVar v))
                    (map fst s1 `intersect` map fst s2)
 
 -- Unification
-mgu     :: Monad m => Type -> Type -> m Subst
-varBind :: Monad m => Tyvar -> Type -> m Subst
+mgu     :: MonadFail m => Type -> Type -> m Subst
+varBind :: MonadFail m => Tyvar -> Type -> m Subst
 
 mgu (TAp l r) (TAp l' r') = do s1 <- mgu l l'
                                s2 <- mgu (apply s1 r) (apply s1 r')
@@ -54,7 +54,7 @@ varBind u t | t == TVar u      = return nullSubst
             | kind u /= kind t = fail "kinds do not match"
             | otherwise        = return (u +-> t)
 
-match :: Monad m => Type -> Type -> m Subst
+match :: MonadFail m => Type -> Type -> m Subst
 
 match (TAp l r) (TAp l' r') = do sl <- match l l'
                                  sr <- match r r'
@@ -110,7 +110,7 @@ addClass :: Id -> [Id] -> [Assump] -> EnvTransformer
 addClass i is ms ce
  | defined (classes ce i)              = fail "class already defined"
  | any (not . defined . classes ce) is = fail "superclass not defined"
- | otherwise = return (modify (ce{assumps = assumps ce ++ ms}) i (is, [], ms)) 
+ | otherwise = return (modify (ce{assumps = assumps ce ++ ms}) i (is, [], ms))
 
 addInst :: [Pred] -> Pred -> Expr -> EnvTransformer
 addInst ps p@(IsIn i _) dict ce
@@ -171,11 +171,11 @@ inHnf (IsIn c t) = hnf t
        hnf (TAp t _) = hnf t
        hnf (TSynonym s ts) = hnf (unsynonym s ts)
 
-toHnfs      :: Monad m => ClassEnv -> [Pred] -> m [Pred]
+toHnfs      :: MonadFail m => ClassEnv -> [Pred] -> m [Pred]
 toHnfs ce ps = do pss <- mapM (toHnf ce) ps
                   return (concat pss)
 
-toHnf                 :: Monad m => ClassEnv -> Pred -> m [Pred]
+toHnf                 :: MonadFail m => ClassEnv -> Pred -> m [Pred]
 toHnf ce p | inHnf p   = return [p]
            | otherwise = case byInst ce p of
                            Nothing -> fail ("context reduction " ++ show p)
@@ -187,7 +187,7 @@ simplify ce = loop []
        loop rs (p:ps) | entail ce (rs++ps) p = loop rs ps
                       | otherwise            = loop (p:rs) ps
 
-reduce      :: Monad m => ClassEnv -> [Pred] -> m [Pred]
+reduce      :: MonadFail m => ClassEnv -> [Pred] -> m [Pred]
 reduce ce ps = do qs <- toHnfs ce ps
                   return (simplify ce qs)
 
@@ -198,11 +198,23 @@ scEntail ce ps p = any (p `elem`) (map (bySuper ce) ps)
 -- Type inference monad
 newtype TI a = TI (Subst -> Int -> (Subst, Int, a))
 
+instance Functor TI where
+  fmap f (TI g) = TI (\s n -> let (s', n', x) = g s n in (s', n', f x))
+
+instance Applicative TI where
+  pure = return
+  TI f <*> TI x = TI (\s n -> let (s1, n1, g) = f s n
+                                  (s2, n2, y) = x s1 n1
+                              in (s2, n2, g y))
+
 instance Monad TI where
   return x   = TI (\s n -> (s,n,x))
   TI f >>= g = TI (\s n -> case f s n of
                             (s',m,x) -> let TI gx = g x
                                         in  gx s' m)
+
+instance MonadFail TI where
+  fail msg = TI (\_ _ -> error msg)
 
 runTI       :: TI a -> a
 runTI (TI f) = x where (s,n,x) = f nullSubst 0
@@ -259,7 +271,7 @@ extend (Env as ras) as' = Env (as' ++ as) ras
 extendRec :: Env -> [RecAssump] -> Env
 extendRec (Env as ras) ras' = Env as (ras' ++ ras)
 
-lookupEnv :: Monad m => Env -> Id -> m (Either Scheme Type)
+lookupEnv :: MonadFail m => Env -> Id -> m (Either Scheme Type)
 lookupEnv (Env as ras) i =
     case lookup i ras of
       Just t  -> return (Right t)
@@ -359,7 +371,7 @@ tiExpr ce env (ESign e sc) =
         else if not (null rs)
               then fail "context too weak"
               else return (ds, te, e')
-       
+
 
 -----------------------------------------------------------------------------
 
@@ -403,7 +415,7 @@ tiGuard ce env (cond, e) =
 
 -----------------------------------------------------------------------------
 
-split :: Monad m => ClassEnv -> [Tyvar] -> [Tyvar] -> [Pred]
+split :: MonadFail m => ClassEnv -> [Tyvar] -> [Tyvar] -> [Pred]
                       -> m ([Pred], [Pred])
 split ce fs gs ps = do ps' <- reduce ce ps
                        let (ds, rs) = partition (all (`elem` fs) . tv) ps'
@@ -432,7 +444,7 @@ candidates ce (v, qs) = [ t' | let is = [ i | IsIn i t <- qs ]
                                t' <- defaults ce,
                                all (entail ce []) [ IsIn i t' | i <- is ] ]
 
-withDefaults :: Monad m => ([Ambiguity] -> [Type] -> a)
+withDefaults :: MonadFail m => ([Ambiguity] -> [Type] -> a)
                   -> ClassEnv -> [Tyvar] -> [Pred] -> m a
 withDefaults f ce vs ps
     | any null tss  = fail "cannot resolve ambiguity"
@@ -440,10 +452,10 @@ withDefaults f ce vs ps
       where vps = ambiguities ce vs ps
             tss = map (candidates ce) vps
 
-defaultedPreds :: Monad m => ClassEnv -> [Tyvar] -> [Pred] -> m [Pred]
+defaultedPreds :: MonadFail m => ClassEnv -> [Tyvar] -> [Pred] -> m [Pred]
 defaultedPreds  = withDefaults (\vps ts -> concat (map snd vps))
 
-defaultSubst   :: Monad m => ClassEnv -> [Tyvar] -> [Pred] -> m Subst
+defaultSubst   :: MonadFail m => ClassEnv -> [Tyvar] -> [Pred] -> m Subst
 defaultSubst    = withDefaults (\vps ts -> zip (map fst vps) ts)
 
 -----------------------------------------------------------------------------

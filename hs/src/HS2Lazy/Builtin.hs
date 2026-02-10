@@ -1,7 +1,7 @@
-module Builtin where
+module HS2Lazy.Builtin where
 import Data.List (find)
 import Data.Char (ord)
-import Syntax
+import HS2Lazy.Syntax
 
 churchnums = [
  SLit $ LitStr "`ki", -- 0

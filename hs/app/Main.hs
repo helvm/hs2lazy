@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import HS2Lazy
 import System.Environment
 import System.IO
 

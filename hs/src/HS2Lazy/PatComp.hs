@@ -1,9 +1,9 @@
-module PatComp (compilePatternMatch, patBindings) where
+module HS2Lazy.PatComp (compilePatternMatch, patBindings) where
 import Data.List
 import Control.Monad hiding (ap)
 import Control.Monad.State hiding (ap)
-import Syntax
-import PPrint ()
+import HS2Lazy.Syntax
+import HS2Lazy.PPrint ()
 
 type PatComp = State Int
 

@@ -9,10 +9,10 @@
 --
 --  modified by irori <irorin@gmail.com>
 
-module Type where
+module HS2Lazy.Type where
 import Data.List(nub, (\\), intersect, union, partition)
 import Control.Monad(msum)
-import Syntax
+import HS2Lazy.Syntax
 
 enumId  :: Int -> Id
 enumId n = "v" ++ show n

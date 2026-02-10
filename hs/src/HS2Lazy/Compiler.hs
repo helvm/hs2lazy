@@ -1,7 +1,7 @@
-module Compiler where
-import Syntax
-import PatComp (compilePatternMatch)
-import PPrint () -- for (Show Expr)
+module HS2Lazy.Compiler where
+import HS2Lazy.Syntax
+import HS2Lazy.PatComp (compilePatternMatch)
+import HS2Lazy.PPrint () -- for (Show Expr)
 
 programToExpr :: Program -> Expr
 programToExpr bgs = foldr Let (mainExpr (last bgs)) bgs'

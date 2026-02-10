@@ -1,4 +1,4 @@
-module SCC (scc) where
+module HS2Lazy.SCC (scc) where
 import Data.List (elemIndex)
 import Control.Monad (when)
 import Data.Array

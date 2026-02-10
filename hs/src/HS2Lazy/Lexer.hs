@@ -1,7 +1,7 @@
 {-# LANGUAGE CPP #-}
 {-# LINE 2 "Lexer.x" #-}
 
-module Lexer where
+module HS2Lazy.Lexer where
 import Numeric (readOct, readHex)
 import Data.Char (isUpper, isLower)
 import qualified Text.ParserCombinators.Parsec.Pos as Pos

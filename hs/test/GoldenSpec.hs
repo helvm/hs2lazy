@@ -2,7 +2,7 @@ module GoldenSpec (test_golden) where
 
 import qualified Data.ByteString.Lazy as LBS
 import qualified Data.ByteString.Lazy.UTF8 as LBS
-import Lib
+import HS2Lazy
 import System.FilePath (takeBaseName, (<.>), (</>))
 import System.IO.Unsafe (unsafePerformIO)
 import Test.Tasty (TestTree, testGroup)

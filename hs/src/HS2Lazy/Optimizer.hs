@@ -1,5 +1,5 @@
-module Optimizer where
-import Syntax
+module HS2Lazy.Optimizer where
+import HS2Lazy.Syntax
 
 optimizeExpr :: Expr -> Expr
 optimizeExpr = optExpr

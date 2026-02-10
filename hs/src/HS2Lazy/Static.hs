@@ -1,10 +1,10 @@
-module Static where
+module HS2Lazy.Static where
 import Data.List(union, partition, (\\))
 import qualified Data.List(find)
-import Syntax
-import qualified Parser as P
-import qualified Type as T
-import PatComp (patBindings)
+import HS2Lazy.Syntax
+import qualified HS2Lazy.Parser as P
+import qualified HS2Lazy.Type as T
+import HS2Lazy.PatComp (patBindings)
 
 type TyconEnv = ([Tycon], [Synonym])
 type DataType = (TyconEnv, [Const])

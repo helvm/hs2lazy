@@ -1,5 +1,5 @@
-module PPrint where
-import Syntax
+module HS2Lazy.PPrint where
+import HS2Lazy.Syntax
 --import IOExts (trace)
 
 --traceProgram :: Program -> Program

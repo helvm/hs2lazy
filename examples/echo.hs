@@ -1,1 +1,0 @@
-main stdin = stdin

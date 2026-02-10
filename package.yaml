@@ -60,3 +60,14 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - hs2lazy
+    - tasty
+    - tasty-hunit
+    - tasty-hspec
+    - tasty-golden
+    - hspec
+    - bytestring
+    - filepath
+    - utf8-string
+
+    build-tools:
+      - tasty-discover:tasty-discover

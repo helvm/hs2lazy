@@ -33,20 +33,17 @@ test_golden :: TestTree
 test_golden =
   testGroup
     "Golden tests"
-    [ testGroup
-        "SKI output"
-        [ goldenVsString
+    [ let inFileContentIO = BSL.readFile inFile
+       in testGroup
             (takeBaseName inFile)
-            (".golden" </> "lazy" </> takeBaseName inFile <.> "lazy")
-            (generateSKIFromBS =<< BSL.readFile inFile)
-        | inFile <- inputFiles
-        ],
-      testGroup
-        "Expr output"
-        [ goldenVsString
-            (takeBaseName inFile)
-            (".golden" </> "expr" </> takeBaseName inFile <.> "expr")
-            (generateExprFromBS =<< BSL.readFile inFile)
-        | inFile <- inputFiles
-        ]
+            [ goldenVsString
+                "SKI output"
+                (".golden" </> "lazy" </> takeBaseName inFile <.> "lazy")
+                (inFileContentIO >>= generateSKIFromBS),
+              goldenVsString
+                "Expr output"
+                (".golden" </> "expr" </> takeBaseName inFile <.> "expr")
+                (inFileContentIO >>= generateExprFromBS)
+            ]
+    | inFile <- inputFiles
     ]

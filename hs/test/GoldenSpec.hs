@@ -16,34 +16,16 @@ inputFiles = unsafePerformIO (findByExtension [".hs"] ("examples" </> "apps"))
 preludeIO :: IO String
 preludeIO = BSL.toString <$> BSL.readFile ("examples" </> "libs" </> "hs2lazy-prelude.hs")
 
-generateSKIFromBS :: BSL.ByteString -> IO BSL.ByteString
-generateSKIFromBS source = do
-  prelude <- preludeIO
-  let src = BSL.toString source
-  let ski = generateSKI $ prelude ++ src
-  pure $ BSL.fromString $ ski
-
-generateExprFromBS :: BSL.ByteString -> IO BSL.ByteString
-generateExprFromBS source = do
-  prelude <- preludeIO
-  let src = BSL.toString source
-  let expr = generateExpr $ prelude ++ src
-  pure $ TL.encodeUtf8 $ expr
-
-compileWithPrelude source = do
-  prelude <- preludeIO
-  pure $ compile $ prelude ++ (BSL.toString source)
-
 test_golden :: TestTree
 test_golden =
   testGroup "Golden tests" $
     map createTests inputFiles
   where
     createTests inFile = unsafePerformIO $ do
-      content <- BSL.readFile inFile
-      result <- compileWithPrelude content
+      prelude <- preludeIO
+      source <- BSL.readFile inFile
+      let (_, _, p', e, _) = compile $ prelude ++ (BSL.toString source)
       let baseName = takeBaseName inFile
-      let (_, _, p', e, _) = result
       pure $
         testGroup
           baseName

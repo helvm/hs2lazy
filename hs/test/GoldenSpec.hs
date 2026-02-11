@@ -36,21 +36,23 @@ compileWithPrelude source = do
 
 test_golden :: TestTree
 test_golden =
-  testGroup
-    "Golden tests"
-    [ let
-       inFileContentIO = BSL.readFile inFile
-       resultIO = inFileContentIO >>= compileWithPrelude
-       in testGroup
-            (takeBaseName inFile)
-            [ goldenVsString
-                "SKI output"
-                (".golden" </> "lazy" </> takeBaseName inFile <.> "lazy")
-                ((\(p, as, p', e, ce) -> BSL.fromString $ renderSKI e)<$> resultIO ),
-              goldenVsString
-                "Expr output"
-                (".golden" </> "expr" </> takeBaseName inFile <.> "expr")
-                ((\(p, as, p', e, ce) -> TL.encodeUtf8 $ pShowNoColor p')<$> resultIO )
-            ]
-    | inFile <- inputFiles
-    ]
+  testGroup "Golden tests" $
+    map createTests inputFiles
+  where
+    createTests inFile = unsafePerformIO $ do
+      content <- BSL.readFile inFile
+      result <- compileWithPrelude content
+      let baseName = takeBaseName inFile
+      let (_, _, p', e, _) = result
+      pure $
+        testGroup
+          baseName
+          [ goldenVsString
+              "SKI output"
+              (".golden" </> "lazy" </> baseName <.> "lazy")
+              (pure $ BSL.fromString $ renderSKI e),
+            goldenVsString
+              "Expr output"
+              (".golden" </> "expr" </> baseName <.> "expr")
+              (pure $ TL.encodeUtf8 $ pShowNoColor p')
+          ]

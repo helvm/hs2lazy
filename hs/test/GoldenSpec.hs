@@ -21,7 +21,7 @@ test_golden =
     createTests inFile = unsafePerformIO $ do
       prelude <- BSL.readFile ("examples" </> "libs" </> "hs2lazy-prelude.hs")
       source <- BSL.readFile inFile
-      let (_, _, p', e, _) = compile $ (BSL.toString prelude) ++ (BSL.toString source)
+      let ((expr, expandedExpr, optimizedExpr), (compiledSki, expandedSki)) = compile $ (BSL.toString prelude) ++ (BSL.toString source)
       let baseName = takeBaseName inFile
       pure $
         testGroup
@@ -29,9 +29,9 @@ test_golden =
           [ goldenVsString
               "SKI output"
               (".golden" </> "lazy" </> baseName <.> "lazy")
-              (pure $ BSL.fromString $ renderSKI e),
+              (pure $ BSL.fromString $ renderSKI expandedSki),
             goldenVsString
               "Expr output"
               (".golden" </> "expr" </> baseName <.> "expr")
-              (pure $ TL.encodeUtf8 $ pShowNoColor p')
+              (pure $ TL.encodeUtf8 $ pShowNoColor optimizedExpr)
           ]

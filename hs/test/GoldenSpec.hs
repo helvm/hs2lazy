@@ -4,6 +4,7 @@ import qualified Data.ByteString.Lazy as BSL
 import qualified Data.ByteString.Lazy.UTF8 as BSL
 import qualified Data.Text.Lazy.Encoding as TL
 import HS2Lazy
+import HS2Lazy.Compiler.Lambda
 import System.FilePath (takeBaseName, (<.>), (</>))
 import System.IO.Unsafe (unsafePerformIO)
 import Test.Tasty (TestTree, testGroup)
@@ -23,6 +24,7 @@ test_golden =
       source <- BSL.readFile inFile
       let result = compile $ (BSL.toString prelude) ++ (BSL.toString source)
       let ((expandedSki, compiledSki), (optimizedExpr, expandedExpr, compiledExpr)) = result
+      let lambda = compileToLambda optimizedExpr
       let baseName = takeBaseName inFile
       pure $
         testGroup
@@ -35,6 +37,10 @@ test_golden =
               "SKI output"
               (".golden" </> "lazy" </> "compiled" </> baseName <.> "lazy")
               (pure $ BSL.fromString $ renderSKI compiledSki),
+            goldenVsString
+              "Lambda output"
+              (".golden" </> "lambda" </> baseName <.> "lambda")
+              (pure $ TL.encodeUtf8 $ pShowNoColor lambda),
             goldenVsString
               "Expr output"
               (".golden" </> "expr" </> "optimized" </> baseName <.> "expr")

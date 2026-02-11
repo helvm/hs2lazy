@@ -14,11 +14,15 @@ import qualified HS2Lazy.Type as T
 import System.Environment
 import System.IO
 
-runIO source = pure $ run source
+runIO source = pure $ generateSKI source
 
-run source =
+generateSKI source =
   let (p, as, p', e, ce) = compile source
    in insertNewline 80 $ map toLower $ show e
+
+generateExpr source =
+  let (p, as, p', e, ce) = compile source
+   in show p'
 
 compile s = (prog, as ++ a, expr2, ski2, ce')
   where

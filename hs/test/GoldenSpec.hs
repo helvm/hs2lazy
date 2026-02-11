@@ -14,20 +14,38 @@ inputFiles = unsafePerformIO (findByExtension [".hs"] ("examples" </> "apps"))
 preludeIO :: IO String
 preludeIO = LBS.toString <$> LBS.readFile ("examples" </> "libs" </> "hs2lazy-prelude.hs")
 
-transform :: LBS.ByteString -> IO LBS.ByteString
-transform source = do
+generateSKIFromBS :: LBS.ByteString -> IO LBS.ByteString
+generateSKIFromBS source = do
   prelude <- preludeIO
   let src = LBS.toString source
-  ski <- runIO $ prelude ++ src
+  let ski = generateSKI $ prelude ++ src
   pure $ LBS.fromString $ ski
+
+generateExprFromBS :: LBS.ByteString -> IO LBS.ByteString
+generateExprFromBS source = do
+  prelude <- preludeIO
+  let src = LBS.toString source
+  let expr = generateExpr $ prelude ++ src
+  pure $ LBS.fromString $ expr
 
 test_golden :: TestTree
 test_golden =
   testGroup
     "Golden tests"
-    [ goldenVsString
-        (takeBaseName inFile)
-        (".golden" </> takeBaseName inFile <.> "lazy")
-        (transform =<< LBS.readFile inFile)
-    | inFile <- inputFiles
+    [ testGroup
+        "SKI output"
+        [ goldenVsString
+            (takeBaseName inFile)
+            (".golden" </> "lazy" </> takeBaseName inFile <.> "lazy")
+            (generateSKIFromBS =<< LBS.readFile inFile)
+        | inFile <- inputFiles
+        ]
+    , testGroup
+        "Expr output"
+        [ goldenVsString
+            (takeBaseName inFile)
+            (".golden" </> "expr" </> takeBaseName inFile <.> "expr")
+            (generateExprFromBS =<< LBS.readFile inFile)
+        | inFile <- inputFiles
+        ]
     ]

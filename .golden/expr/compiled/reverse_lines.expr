@@ -1,0 +1,175 @@
+let
+    { == @1 = @1
+        ( \@2 @3-> let
+            { e1 = @3 } in let
+            { e0 = @2 } in e0
+        )
+    } in let
+    { /= @4 = @4
+        ( \@5 @6-> let
+            { e1 = @6 } in let
+            { e0 = @5 } in e1
+        )
+    } in let
+    { EqInt = () &eq &neq } in let
+    { EqChar = () &eq &neq } in let
+    { showsPrec @7 = @7
+        ( \@8 @9-> let
+            { e1 = @9 } in let
+            { e0 = @8 } in e0
+        )
+    } in let
+    { show @10 = @10
+        ( \@11 @12-> let
+            { e1 = @12 } in let
+            { e0 = @11 } in e1
+        )
+    } in let { showChar = : } in let
+    { shows Show#v1 = showsPrec Show#v1 0 } in let
+    { show# Show#v771 x = showsPrec Show#v771 0 x [] } in let
+    { ShowInt = () showsPrec#Int ( show# ShowInt );
+      showsPrec#Int p n = IF
+        ( < n 0 )
+        ( . ( showChar - )
+            ( shows ShowInt
+                ( - 0 n )
+            )
+        )
+        ( let
+            { d = chr
+                ( +
+                    ( ord 0 )
+                    ( mod n 10 )
+                )
+            } in let
+            { m = div n 10 } in IF
+            ( == EqInt m 0 ) ( showChar d )
+            ( . ( showsPrec ShowInt p m ) ( showChar d ) )
+        )
+    } in let
+    { not @66 = IF
+        ( @66 ( \-> True ) ( \-> False ) )
+        ( @66 ( \-> False ) ( error !? ) )
+        ( @66 ( error !? ) ( \-> True ) )
+    } in let
+    { Eq[] Eq#a = ()
+        ( ==#[] Eq#a )
+        ( /=#[] Eq#a );
+      /=#[] Eq#v848 xs ys = not
+        ( ==
+            ( Eq[] Eq#v848 ) xs ys
+        );
+      ==#[] @109 @110 @111 = IF
+        ( @110 ( \_1 _2-> False ) ( \-> True ) )
+        ( @110 ( error !? )
+            ( \-> IF
+                ( @111 ( \_1 _2-> False ) ( \-> True ) )
+                ( @111 ( error !? )
+                    ( \-> let
+                        { Eq#v840 = @109 } in True
+                    )
+                )
+                ( let
+                    { Eq#v840 = @109 } in False
+                )
+            )
+        )
+        ( IF
+            ( @111 ( \_1 _2-> False ) ( \-> True ) )
+            ( @111 ( error !? )
+                ( \-> let
+                    { Eq#v840 = @109 } in False
+                )
+            )
+            ( IF
+                ( @110 ( \_1 _2-> True ) ( \-> False ) )
+                ( @110
+                    ( \@112 @113-> IF
+                        ( @111 ( \_1 _2-> True ) ( \-> False ) )
+                        ( @111
+                            ( \@114 @115-> let
+                                { ys = @115 } in let
+                                { y = @114 } in let
+                                { xs = @113 } in let
+                                { x = @112 } in let
+                                { Eq#v840 = @109 } in && ( == Eq#v840 x y )
+                                ( ==
+                                    ( Eq[] Eq#v840 ) xs ys
+                                )
+                            ) ( error !? )
+                        ) ( error Non-exhaustive patterns )
+                    ) ( error !? )
+                ) ( error Non-exhaustive patterns )
+            )
+        )
+    } in let { showString = ++ } in let { $ f x = f x } in let
+    { fst @13 = @13
+        ( \@14 @15-> let
+            { b = @15 } in let
+            { a = @14 } in a
+        )
+    } in let
+    { snd @16 = @16
+        ( \@17 @18-> let
+            { b = @18 } in let
+            { a = @17 } in b
+        )
+    } in let
+    { map @19 @20 = IF
+        ( @20 ( \_1 _2-> True ) ( \-> False ) )
+        ( @20
+            ( \@21 @22-> let
+                { xs = @22 } in let
+                { x = @21 } in let
+                { f = @19 } in : ( f x ) ( map f xs )
+            ) ( error !? )
+        )
+        ( @20 ( error !? )
+            ( \-> let
+                { f = @19 } in []
+            )
+        )
+    } in let
+    { filter @23 @24 = IF
+        ( @24 ( \_1 _2-> False ) ( \-> True ) )
+        ( @24 ( error !? )
+            ( \-> let
+                { p = @23 } in []
+            )
+        )
+        ( @24
+            ( \@25 @26-> let
+                { xs = @26 } in let
+                { x = @25 } in let
+                { p = @23 } in IF ( p x )
+                ( : x ( filter p xs ) ) ( filter p xs )
+            ) ( error !? )
+        )
+    } in let
+    { null @27 = IF
+        ( @27 ( \_1 _2-> False ) ( \-> True ) )
+        ( @27 ( error !? ) ( \-> True ) )
+        ( @27
+            ( \@28 @29-> False ) ( error !? )
+        )
+    } in let
+    { head @30 = IF
+        ( @30 ( \_1 _2-> False ) ( \-> True ) )
+        ( @30 ( error !? )
+            ( \-> error
+                ( : h
+                    ( : e
+                        ( : a
+                            ( : d
+                                ( :
+                                    ( :
+                                        [  ( :  ) ] []
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    }

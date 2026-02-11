@@ -1,0 +1,292 @@
+let
+    { == @1 = @1
+        ( \@2 @3-> let
+            { e1 = @3 } in let
+            { e0 = @2 } in e0
+        )
+    } in let
+    { /= @4 = @4
+        ( \@5 @6-> let
+            { e1 = @6 } in let
+            { e0 = @5 } in e1
+        )
+    } in let
+    { EqInt = () &eq &neq } in let
+    { EqChar = () &eq &neq } in let
+    { showsPrec @7 = @7
+        ( \@8 @9-> let
+            { e1 = @9 } in let
+            { e0 = @8 } in e0
+        )
+    } in let
+    { show @10 = @10
+        ( \@11 @12-> let
+            { e1 = @12 } in let
+            { e0 = @11 } in e1
+        )
+    } in let { showChar = : } in let
+    { shows Show#v1 = showsPrec Show#v1 0 } in let
+    { show# Show#v2749 x = showsPrec Show#v2749 0 x [] } in let
+    { ShowInt = () showsPrec#Int ( show# ShowInt );
+      showsPrec#Int p n = IF
+        ( < n 0 )
+        ( . ( showChar - )
+            ( shows ShowInt
+                ( - 0 n )
+            )
+        )
+        ( let
+            { d = chr
+                ( +
+                    ( ord 0 )
+                    ( mod n 10 )
+                )
+            } in let
+            { m = div n 10 } in IF
+            ( == EqInt m 0 ) ( showChar d )
+            ( . ( showsPrec ShowInt p m ) ( showChar d ) )
+        )
+    } in let
+    { not @66 = IF
+        ( @66 ( \-> True ) ( \-> False ) )
+        ( @66 ( \-> False ) ( error !? ) )
+        ( @66 ( error !? ) ( \-> True ) )
+    } in let
+    { Eq[] Eq#a = ()
+        ( ==#[] Eq#a )
+        ( /=#[] Eq#a );
+      /=#[] Eq#v2826 xs ys = not
+        ( ==
+            ( Eq[] Eq#v2826 ) xs ys
+        );
+      ==#[] @339 @340 @341 = IF
+        ( @340 ( \_1 _2-> False ) ( \-> True ) )
+        ( @340 ( error !? )
+            ( \-> IF
+                ( @341 ( \_1 _2-> False ) ( \-> True ) )
+                ( @341 ( error !? )
+                    ( \-> let
+                        { Eq#v2818 = @339 } in True
+                    )
+                )
+                ( let
+                    { Eq#v2818 = @339 } in False
+                )
+            )
+        )
+        ( IF
+            ( @341 ( \_1 _2-> False ) ( \-> True ) )
+            ( @341 ( error !? )
+                ( \-> let
+                    { Eq#v2818 = @339 } in False
+                )
+            )
+            ( IF
+                ( @340 ( \_1 _2-> True ) ( \-> False ) )
+                ( @340
+                    ( \@342 @343-> IF
+                        ( @341 ( \_1 _2-> True ) ( \-> False ) )
+                        ( @341
+                            ( \@344 @345-> let
+                                { ys = @345 } in let
+                                { y = @344 } in let
+                                { xs = @343 } in let
+                                { x = @342 } in let
+                                { Eq#v2818 = @339 } in && ( == Eq#v2818 x y )
+                                ( ==
+                                    ( Eq[] Eq#v2818 ) xs ys
+                                )
+                            ) ( error !? )
+                        ) ( error Non-exhaustive patterns )
+                    ) ( error !? )
+                ) ( error Non-exhaustive patterns )
+            )
+        )
+    } in let { showString = ++ } in let
+    { ShowObject = () showsPrec#Object ( show# ShowObject );
+      showsPrec#Object @346 @347 = IF
+        ( &eq @346 0 )
+        ( IF
+            ( @347 ( \_1 _2-> True ) ( \_1-> False ) ( \_1-> False ) ( \_1-> False ) )
+            ( @347
+                ( \@348 @349-> let
+                    { tl = @349 } in let
+                    { hd = @348 } in .
+                    ( showChar ()
+                        ( .
+                            ( showsPrec ShowObject 0 hd )
+                            ( showsPrec ShowObject 1 tl )
+                        )
+                    ) ( error !? ) ( error !? ) ( error !? )
+                )
+                ( IF
+                    ( @347 ( \_1 _2-> False ) ( \_1-> True ) ( \_1-> False ) ( \_1-> False ) )
+                    ( @347 ( error !? )
+                        ( \@350-> let
+                            { n = @350 } in showsPrec ShowInt 0 n
+                        ) ( error !? ) ( error !? )
+                    )
+                    ( IF
+                        ( @347 ( \_1 _2-> False ) ( \_1-> False ) ( \_1-> False ) ( \_1-> True ) )
+                        ( @347 ( error !? ) ( error !? ) ( error !? )
+                            ( \@351-> showString
+                                ( : <
+                                    ( : p
+                                        ( : r
+                                            ( : o
+                                                ( : c
+                                                    ( : e
+                                                        ( : d
+                                                            ( : u
+                                                                ( : r
+                                                                    ( : e
+                                                                        ( : > [] )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                        ( @347 ( error !? ) ( error !? )
+                            ( \@352-> let
+                                { s = @352 } in showString s
+                            ) ( error !? )
+                        )
+                    )
+                )
+            )
+            ( IF
+                ( &eq @346 1 )
+                ( IF
+                    ( @347 ( \_1 _2-> True ) ( \_1-> False ) ( \_1-> False ) ( \_1-> False ) )
+                    ( @347
+                        ( \@353 @354-> let
+                            { tl = @354 } in let
+                            { hd = @353 } in . ( showChar   )
+                            ( .
+                                ( showsPrec ShowObject 0 hd )
+                                ( showsPrec ShowObject 1 tl )
+                            )
+                        ) ( error !? ) ( error !? ) ( error !? )
+                    )
+                    ( IF
+                        ( @347 ( \_1 _2-> False ) ( \_1-> False ) ( \_1-> True ) ( \_1-> False ) )
+                        ( @347 ( error !? ) ( error !? )
+                            ( \@355-> IF
+                                ( @355 ( \_1 _2-> True ) ( \-> False ) )
+                                ( @355
+                                    ( \@356 @357-> IF
+                                        ( &eq @356 n )
+                                        ( IF
+                                            ( @357 ( \_1 _2-> True ) ( \-> False ) )
+                                            ( @357
+                                                ( \@358 @359-> IF
+                                                    ( &eq @358 i )
+                                                    ( IF
+                                                        ( @359 ( \_1 _2-> True ) ( \-> False ) )
+                                                        ( @359
+                                                            ( \@360 @361-> IF
+                                                                ( &eq @360 l )
+                                                                ( IF
+                                                                    ( @361 ( \_1 _2-> False ) ( \-> True ) )
+                                                                    ( @361 ( error !? ) ( \-> showChar  ) )
+                                                                )
+                                                                ( let
+                                                                    { a = @347 } in .
+                                                                    ( showString
+                                                                        ( :
+                                                                            ( : .
+                                                                                ( :   [] )
+                                                                            )
+                                                                        )
+                                                                    )
+                                                                    ( .
+                                                                        ( showsPrec ShowObject 0 a ) ( showChar  )
+                                                                    )
+                                                                )
+                                                            )
+                                                        )
+                                                        ( let
+                                                            { a = @347 } in .
+                                                            ( showString
+                                                                ( :
+                                                                    ( : .
+                                                                        ( :   [] )
+                                                                    )
+                                                                )
+                                                            )
+                                                            ( .
+                                                                ( showsPrec ShowObject 0 a ) ( showChar  )
+                                                            )
+                                                        )
+                                                    )
+                                                ) ( error !? )
+                                            )
+                                            ( let
+                                                { a = @347 } in .
+                                                ( showString
+                                                    ( :
+                                                        ( : .
+                                                            ( :   [] )
+                                                        )
+                                                    )
+                                                )
+                                                ( .
+                                                    ( showsPrec ShowObject 0 a ) ( showChar  )
+                                                )
+                                            )
+                                        )
+                                    )
+                                    ( let
+                                        { a = @347 } in .
+                                        ( showString
+                                            ( :
+                                                ( : .
+                                                    ( :   [] )
+                                                )
+                                            )
+                                        )
+                                        ( .
+                                            ( showsPrec ShowObject 0 a ) ( showChar  )
+                                        )
+                                    )
+                                )
+                            ) ( error !? )
+                        )
+                        ( let
+                            { a = @347 } in .
+                            ( showString
+                                ( :
+                                    ( : .
+                                        ( :   [] )
+                                    )
+                                )
+                            )
+                            ( .
+                                ( showsPrec ShowObject 0 a ) ( showChar  )
+                            )
+                        )
+                    )
+                )
+                ( let
+                    { a = @347 } in .
+                    ( showString
+                        ( :
+                            ( : .
+                                ( :   [] )
+                            )
+                        )
+                    )
+                    ( .
+                        ( showsPrec ShowObject 0 a ) ( showChar  )
+                    )
+                )
+            )
+        ) ( error !? )
+    }

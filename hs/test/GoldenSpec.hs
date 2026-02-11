@@ -21,17 +21,30 @@ test_golden =
     createTests inFile = unsafePerformIO $ do
       prelude <- BSL.readFile ("examples" </> "libs" </> "hs2lazy-prelude.hs")
       source <- BSL.readFile inFile
-      let ((expr, expandedExpr, optimizedExpr), (compiledSki, expandedSki)) = compile $ (BSL.toString prelude) ++ (BSL.toString source)
+      let result = compile $ (BSL.toString prelude) ++ (BSL.toString source)
+      let ((expandedSki, compiledSki), (optimizedExpr, expandedExpr, compiledExpr)) = result
       let baseName = takeBaseName inFile
       pure $
         testGroup
           baseName
           [ goldenVsString
               "SKI output"
-              (".golden" </> "lazy" </> baseName <.> "lazy")
+              (".golden" </> "lazy" </> "expanded" </> baseName <.> "lazy")
               (pure $ BSL.fromString $ renderSKI expandedSki),
             goldenVsString
+              "SKI output"
+              (".golden" </> "lazy" </> "compiled" </> baseName <.> "lazy")
+              (pure $ BSL.fromString $ renderSKI compiledSki),
+            goldenVsString
               "Expr output"
-              (".golden" </> "expr" </> baseName <.> "expr")
-              (pure $ TL.encodeUtf8 $ pShowNoColor optimizedExpr)
+              (".golden" </> "expr" </> "optimized" </> baseName <.> "expr")
+              (pure $ TL.encodeUtf8 $ pShowNoColor optimizedExpr),
+            goldenVsString
+              "Expr output"
+              (".golden" </> "expr" </> "expanded" </> baseName <.> "expr")
+              (pure $ TL.encodeUtf8 $ pShowNoColor expandedExpr),
+            goldenVsString
+              "Expr output"
+              (".golden" </> "expr" </> "compiled" </> baseName <.> "expr")
+              (pure $ TL.encodeUtf8 $ pShowNoColor compiledExpr)
           ]

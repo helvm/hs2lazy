@@ -18,12 +18,12 @@ import Text.Pretty.Simple
 runIO source = pure $ generateSKI source
 
 generateSKI source =
-  let (_, (_, e)) = compile source
+  let ((e, _), _) = compile source
    in renderSKI e
 
 renderSKI ski = insertNewline 80 $ map toLower $ show ski
 
-compile s = ((expr, expandedExpr, optimizedExpr), (compiledSki, expandedSki))
+compile s = ((expandedSki, compiledSki), (optimizedExpr, expandedExpr, compiledExpr))
   where
     (prog, is, ce', as) = S.analyze ce topdecls
     topdecls =
@@ -33,8 +33,8 @@ compile s = ((expr, expandedExpr, optimizedExpr), (compiledSki, expandedSki))
     (a, prog') = T.tiProgram ce' as' prog
     prog2 = ([], [is]) : prog'
     prog3 = compilePatternMatch prog2
-    expr = programToExpr prog3
-    expandedExpr = expandCon $ expr
+    compiledExpr = programToExpr prog3
+    expandedExpr = expandCon $ compiledExpr
     optimizedExpr = optimizeExpr expandedExpr
     compiledSki = skiCompile optimizedExpr
     expandedSki = expandBltin compiledSki

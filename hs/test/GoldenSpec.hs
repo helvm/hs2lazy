@@ -13,18 +13,15 @@ import Text.Pretty.Simple
 inputFiles :: [FilePath]
 inputFiles = unsafePerformIO (findByExtension [".hs"] ("examples" </> "apps"))
 
-preludeIO :: IO String
-preludeIO = BSL.toString <$> BSL.readFile ("examples" </> "libs" </> "hs2lazy-prelude.hs")
-
 test_golden :: TestTree
 test_golden =
   testGroup "Golden tests" $
     map createTests inputFiles
   where
     createTests inFile = unsafePerformIO $ do
-      prelude <- preludeIO
+      prelude <- BSL.readFile ("examples" </> "libs" </> "hs2lazy-prelude.hs")
       source <- BSL.readFile inFile
-      let (_, _, p', e, _) = compile $ prelude ++ (BSL.toString source)
+      let (_, _, p', e, _) = compile $ (BSL.toString prelude) ++ (BSL.toString source)
       let baseName = takeBaseName inFile
       pure $
         testGroup

@@ -19,7 +19,9 @@ runIO source = pure $ generateSKI source
 
 generateSKI source =
   let (p, as, p', e, ce) = compile source
-   in insertNewline 80 $ map toLower $ show e
+   in renderSKI e
+
+renderSKI ski = insertNewline 80 $ map toLower $ show ski
 
 generateExpr source =
   let (p, as, p', e, ce) = compile source

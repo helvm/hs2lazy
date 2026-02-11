@@ -8,6 +8,7 @@ import System.FilePath (takeBaseName, (<.>), (</>))
 import System.IO.Unsafe (unsafePerformIO)
 import Test.Tasty (TestTree, testGroup)
 import Test.Tasty.Golden (findByExtension, goldenVsString)
+import Text.Pretty.Simple
 
 inputFiles :: [FilePath]
 inputFiles = unsafePerformIO (findByExtension [".hs"] ("examples" </> "apps"))
@@ -29,21 +30,27 @@ generateExprFromBS source = do
   let expr = generateExpr $ prelude ++ src
   pure $ TL.encodeUtf8 $ expr
 
+compileWithPrelude source = do
+  prelude <- preludeIO
+  pure $ compile $ prelude ++ (BSL.toString source)
+
 test_golden :: TestTree
 test_golden =
   testGroup
     "Golden tests"
-    [ let inFileContentIO = BSL.readFile inFile
+    [ let
+       inFileContentIO = BSL.readFile inFile
+       resultIO = inFileContentIO >>= compileWithPrelude
        in testGroup
             (takeBaseName inFile)
             [ goldenVsString
                 "SKI output"
                 (".golden" </> "lazy" </> takeBaseName inFile <.> "lazy")
-                (inFileContentIO >>= generateSKIFromBS),
+                ((\(p, as, p', e, ce) -> BSL.fromString $ renderSKI e)<$> resultIO ),
               goldenVsString
                 "Expr output"
                 (".golden" </> "expr" </> takeBaseName inFile <.> "expr")
-                (inFileContentIO >>= generateExprFromBS)
+                ((\(p, as, p', e, ce) -> TL.encodeUtf8 $ pShowNoColor p')<$> resultIO )
             ]
     | inFile <- inputFiles
     ]

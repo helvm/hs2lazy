@@ -13,7 +13,7 @@ import HS2Lazy.Syntax
 import qualified HS2Lazy.Type as T
 import System.Environment
 import System.IO
-import           Text.Pretty.Simple
+import Text.Pretty.Simple
 
 runIO source = pure $ generateSKI source
 

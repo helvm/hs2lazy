@@ -4,11 +4,9 @@
 {-# OPTIONS_GHC -fno-warn-tabs #-}
 {-# OPTIONS_GHC -fno-warn-unused-binds #-}
 {-# OPTIONS_GHC -fno-warn-unused-imports #-}
+
 module HS2Lazy.Lexer where
 
-import Data.Char (isLower, isUpper)
-import Numeric (readHex, readOct)
-import qualified Text.ParserCombinators.Parsec.Pos as Pos
 import qualified Data.Array
 -- -----------------------------------------------------------------------------
 -- Alex wrapper code.
@@ -17,8 +15,11 @@ import qualified Data.Array
 -- it for any purpose whatsoever.
 
 import qualified Data.Bits
+import Data.Char (isLower, isUpper)
 import qualified Data.Char
 import Data.Word (Word8)
+import Numeric (readHex, readOct)
+import qualified Text.ParserCombinators.Parsec.Pos as Pos
 
 -- | Encode a Haskell String to a list of Word8 values, in UTF8 format.
 utf8Encode :: Char -> [Word8]

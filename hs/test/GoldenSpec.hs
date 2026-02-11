@@ -2,9 +2,7 @@ module GoldenSpec (test_golden) where
 
 import qualified Data.ByteString.Lazy as BSL
 import qualified Data.ByteString.Lazy.UTF8 as BSL
-import qualified Data.Text.Lazy as TL
 import qualified Data.Text.Lazy.Encoding as TL
-
 import HS2Lazy
 import System.FilePath (takeBaseName, (<.>), (</>))
 import System.IO.Unsafe (unsafePerformIO)
@@ -42,8 +40,8 @@ test_golden =
             (".golden" </> "lazy" </> takeBaseName inFile <.> "lazy")
             (generateSKIFromBS =<< BSL.readFile inFile)
         | inFile <- inputFiles
-        ]
-    , testGroup
+        ],
+      testGroup
         "Expr output"
         [ goldenVsString
             (takeBaseName inFile)

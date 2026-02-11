@@ -13,6 +13,7 @@ import HS2Lazy.Syntax
 import qualified HS2Lazy.Type as T
 import System.Environment
 import System.IO
+import           Text.Pretty.Simple
 
 runIO source = pure $ generateSKI source
 
@@ -22,7 +23,7 @@ generateSKI source =
 
 generateExpr source =
   let (p, as, p', e, ce) = compile source
-   in show p'
+   in pShowNoColor p'
 
 compile s = (prog, as ++ a, expr2, ski2, ce')
   where

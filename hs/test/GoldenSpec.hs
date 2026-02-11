@@ -1,7 +1,10 @@
 module GoldenSpec (test_golden) where
 
-import qualified Data.ByteString.Lazy as LBS
-import qualified Data.ByteString.Lazy.UTF8 as LBS
+import qualified Data.ByteString.Lazy as BSL
+import qualified Data.ByteString.Lazy.UTF8 as BSL
+import qualified Data.Text.Lazy as TL
+import qualified Data.Text.Lazy.Encoding as TL
+
 import HS2Lazy
 import System.FilePath (takeBaseName, (<.>), (</>))
 import System.IO.Unsafe (unsafePerformIO)
@@ -12,21 +15,21 @@ inputFiles :: [FilePath]
 inputFiles = unsafePerformIO (findByExtension [".hs"] ("examples" </> "apps"))
 
 preludeIO :: IO String
-preludeIO = LBS.toString <$> LBS.readFile ("examples" </> "libs" </> "hs2lazy-prelude.hs")
+preludeIO = BSL.toString <$> BSL.readFile ("examples" </> "libs" </> "hs2lazy-prelude.hs")
 
-generateSKIFromBS :: LBS.ByteString -> IO LBS.ByteString
+generateSKIFromBS :: BSL.ByteString -> IO BSL.ByteString
 generateSKIFromBS source = do
   prelude <- preludeIO
-  let src = LBS.toString source
+  let src = BSL.toString source
   let ski = generateSKI $ prelude ++ src
-  pure $ LBS.fromString $ ski
+  pure $ BSL.fromString $ ski
 
-generateExprFromBS :: LBS.ByteString -> IO LBS.ByteString
+generateExprFromBS :: BSL.ByteString -> IO BSL.ByteString
 generateExprFromBS source = do
   prelude <- preludeIO
-  let src = LBS.toString source
+  let src = BSL.toString source
   let expr = generateExpr $ prelude ++ src
-  pure $ LBS.fromString $ expr
+  pure $ TL.encodeUtf8 $ expr
 
 test_golden :: TestTree
 test_golden =
@@ -37,7 +40,7 @@ test_golden =
         [ goldenVsString
             (takeBaseName inFile)
             (".golden" </> "lazy" </> takeBaseName inFile <.> "lazy")
-            (generateSKIFromBS =<< LBS.readFile inFile)
+            (generateSKIFromBS =<< BSL.readFile inFile)
         | inFile <- inputFiles
         ]
     , testGroup
@@ -45,7 +48,7 @@ test_golden =
         [ goldenVsString
             (takeBaseName inFile)
             (".golden" </> "expr" </> takeBaseName inFile <.> "expr")
-            (generateExprFromBS =<< LBS.readFile inFile)
+            (generateExprFromBS =<< BSL.readFile inFile)
         | inFile <- inputFiles
         ]
     ]

@@ -51,14 +51,9 @@ compileOne (name, [alt]) body =
   let rhs = compileAlt alt
    in if occurs name rhs
         then
-          -- rekurencja
-          UApp
-            (ULam name body)
-            (UApp yComb (ULam name rhs))
+          UApp (ULam name body) (UApp yComb (ULam name rhs))
         else
-          UApp
-            (ULam name body)
-            rhs
+          UT rhs (ULam name body)
 compileOne def _ =
   error ("Unsupported definition: " ++ show def)
 
@@ -75,9 +70,9 @@ occurs x (UVar y) = x == y
 occurs x (ULam y t)
   | x == y = False
   | otherwise = occurs x t
-occurs x (UApp t1 t2) =
-  occurs x t1 || occurs x t2
+occurs x (UApp t1 t2) = occurs x t1 || occurs x t2
 occurs _ (ULit _) = False
+occurs x (UT t f) = occurs x t || occurs x f
 
 lambdaCompile :: Program -> UTerm
 lambdaCompile =

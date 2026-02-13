@@ -1,6 +1,0 @@
-;\@1 @1 \@2 \@3 @2 \==
-;\@4 @4 \@5 \@6 @6 \/=
-;`\@a1 \@a2 \@f1 @f1 @a1 @a2 &eq &neq \EqInt
-;`\@a1 \@a2 \@f1 @f1 @a1 @a2 &eq &neq \EqChar
-;\stdin stdin \main
-main

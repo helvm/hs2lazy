@@ -1,0 +1,48 @@
+UT
+    ULam "@1"
+        UApp
+            UVar "@1"
+            ULam "@2"
+                ULam "@3"
+                    UVar "@2"
+    ULam "=="
+        UT
+            ULam "@4"
+                UApp
+                    UVar "@4"
+                    ULam "@5"
+                        ULam "@6"
+                            UVar "@6"
+            ULam "/="
+                UT
+                    UApp
+                        UApp
+                            ULam "@a1"
+                                ULam "@a2"
+                                    ULam "@f1"
+                                        UApp
+                                            UApp
+                                                UVar "@f1"
+                                                UVar "@a1"
+                                            UVar "@a2"
+                            UVar "&eq"
+                        UVar "&neq"
+                    ULam "EqInt"
+                        UT
+                            UApp
+                                UApp
+                                    ULam "@a1"
+                                        ULam "@a2"
+                                            ULam "@f1"
+                                                UApp
+                                                    UApp
+                                                        UVar "@f1"
+                                                        UVar "@a1"
+                                                    UVar "@a2"
+                                    UVar "&eq"
+                                UVar "&neq"
+                            ULam "EqChar"
+                                UT
+                                    ULit 0
+                                    ULam "main"
+                                        UVar "main"

@@ -6,6 +6,7 @@ import qualified Data.Text.Lazy as TL
 import qualified Data.Text.Lazy.Encoding as TL
 import HS2Lazy
 import HS2Lazy.Compiler.Lambda
+import HS2Lazy.Syntax.Lambda
 import System.FilePath (takeBaseName, (<.>), (</>))
 import System.IO.Unsafe (unsafePerformIO)
 import Test.Tasty (TestTree, testGroup)
@@ -39,8 +40,16 @@ test_golden =
               (pure $ BSL.fromString $ renderSKI compiledSki),
             goldenVsString
               "Lambda output"
-              (".golden" </> "scripts" </> "lambda" </> baseName <.> "lambda")
-              (pure $ TL.encodeUtf8 $ TL.pack $ show lambda),
+              (".golden" </> "scripts" </> "lambda" </> "readable" </> baseName <.> "lambda")
+              (pure $ TL.encodeUtf8 $ TL.pack $ showFruit lambda),
+            goldenVsString
+              "Lambda output"
+              (".golden" </> "scripts" </> "lambda" </> "pretty" </> baseName <.> "lambda")
+              (pure $ TL.encodeUtf8 $ TL.pack $ prettyLambda lambda),
+            goldenVsString
+              "Lambda output"
+              (".golden" </> "scripts" </> "lambda" </> "raw" </> baseName <.> "lambda")
+              (pure $ TL.encodeUtf8 $ pShowNoColor lambda),
             goldenVsString
               "Expr output"
               (".golden" </> "scripts" </> "expr" </> "optimized" </> baseName <.> "expr")

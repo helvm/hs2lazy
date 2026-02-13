@@ -15,9 +15,15 @@ data UTerm
 instance Show UTerm where
   show (UVar x) = x
   show (ULam x e) = "\\" ++ x ++ " " ++ show e
-  show (UApp e1 e2) = "(" ++ show e1 ++ " " ++ show e2 ++ ")"
+  show (UApp e1 e2) =
+    "` " ++ show e1 ++ " " ++ show e2
   show (ULit l) = show l
-  show (UT v f) = "T " ++ show v ++ " " ++ show f
+  show (UT v f) =
+    "` ` T " ++ show v ++ " " ++ show f
+
+isApp :: UTerm -> Bool
+isApp (UApp _ _) = True
+isApp _ = False
 
 pretty :: UTerm -> String
 pretty = go 0

@@ -19,10 +19,8 @@ showUTerm :: UTerm -> String
 showUTerm (UVar x) = x
 showUTerm (ULam x e) = "\\" ++ x ++ "\n" ++ showUTerm e
 showUTerm (ULit l) = show l
-showUTerm (UApp e1 e2) =
-  showUTerm e1 ++ " " ++ showArg e2
-showUTerm (UT v f) =
-  showUTerm f ++ " " ++ showArg v
+showUTerm (UApp e1 e2) = showUTerm e1 ++ " " ++ showArg e2
+showUTerm (UT v f) = ";" ++ showArg v ++ " " ++ showUTerm f
 
 showArg :: UTerm -> String
 showArg t

@@ -27,24 +27,18 @@ yComb =
 
 compileToLambda :: Expr -> UTerm
 compileToLambda (Var x) = UVar x
-compileToLambda (Ap e1 e2) =
-  UApp (compileToLambda e1) (compileToLambda e2)
-compileToLambda (Lambda (vs, Rhs e)) =
-  foldr ULam (compileToLambda e) (map patVar vs)
+compileToLambda (Ap e1 e2) = UApp (compileToLambda e1) (compileToLambda e2)
+compileToLambda (Lambda (vs, Rhs e)) = foldr ULam (compileToLambda e) (map patVar vs)
   where
     patVar (PVar v) = v
     patVar p = error ("Unsupported lambda pattern: " ++ show p)
-compileToLambda (Let bg e) =
-  compileLetGroup (bindings bg) (compileToLambda e)
+compileToLambda (Let bg e) = compileLetGroup (bindings bg) (compileToLambda e)
 compileToLambda (Lit l) = ULit l
-compileToLambda (Con c) =
-  error ("Constructor should be expanded before lambda compilation")
-compileToLambda e =
-  error ("compileToLambda: " ++ show e)
+compileToLambda (Con c) = error ("Constructor should be expanded before lambda compilation")
+compileToLambda e = error ("compileToLambda: " ++ show e)
 
 compileLetGroup :: [(Id, [Alt])] -> UTerm -> UTerm
-compileLetGroup defs body =
-  foldr compileOne body defs
+compileLetGroup defs body = foldr compileOne body defs
 
 compileOne :: (Id, [Alt]) -> UTerm -> UTerm
 compileOne (name, [alt]) body =

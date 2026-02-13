@@ -1,68 +1,333 @@
-\==
-\/=
-\EqInt
-\EqChar
-\showsPrec
-\show
-\showChar
-\shows
-\show#
-\ShowInt
-\showsPrec#Int
-\not
-\Eq[]
-  \/=#[]
-  \==#[]
-  \$
-  \fst
-  \snd
+;\@1
+  @1 \@2
+  \@3
+  @2 \==
+  ;\@4
+  @4 \@5
+  \@6
+  @6 \/=
+  ;`\@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 &eq &neq \EqInt
+  ;`\@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 &eq &neq \EqChar
+  ;\@7
+  @7 \@8
+  \@9
+  @8 \showsPrec
+  ;\@10
+  @10 \@11
+  \@12
+  @12 \show
+  ;\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 \showChar
+  ;\Show#v1
+  showsPrec Show#v1 0 \shows
+  ;\Show#v793
+  \x
+  showsPrec Show#v793 0 x \@f1
+  \@f2
+  @f2 \show#
+  \ShowInt
+  ;\p
+  \n
+  IF `< n 0 `. `showChar - `shows ShowInt `- 0 n ;`chr `+ `ord 0 `mod n 10 \d
+  ;`div n 10 \m
+  IF `== EqInt m 0 `showChar d `. `showsPrec ShowInt p m `showChar d \showsPrec#Int
+  ;\@66
+  IF `@66 \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@66 \@f1
+  \@f2
+  @f2 `error !? `@66 `error !? \@f1
+  \@f2
+  @f1 \not
+  ;\Eq#a
+  \@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 `==#[] Eq#a `/=#[] Eq#a \Eq[]
+  ;\Eq#v870
+  \xs
+  \ys
+  not `== `Eq[] Eq#v870 xs ys \/=#[]
+  ;\@114
+  \@115
+  \@116
+  IF `@115 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@115 `error !? `IF `@116 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@116 `error !? \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `IF `@116 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@116 `error !? \@f1
+  \@f2
+  @f2 `IF `@115 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@115 \@117
+  \@118
+  IF `@116 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@116 \@119
+  \@120
+  && `== @114 @117 @119 `== `Eq[] @114 @118 @120 `error !? `error Non-exhaustive patterns `error !? `error Non-exhaustive patterns \==#[]
+  ;\f
+  \x
+  f x \$
+  ;\@13
+  @13 \@14
+  \@15
+  @14 \fst
+  ;\@16
+  @16 \@17
+  \@18
+  @18 \snd
   \map
   \filter
-  \null
-  \head
-  \tail
+  ;\@27
+  IF `@27 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@27 `error !? \@f1
+  \@f2
+  @f1 `@27 \@28
+  \@29
+  \@f1
+  \@f2
+  @f2 `error !? \null
+  ;\@30
+  IF `@30 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@30 `error !? `error `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 h `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 e `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 a `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 d `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2   `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 [  `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2  ] \@f1
+  \@f2
+  @f2 `@30 \@31
+  \@32
+  @31 `error !? \head
+  ;\@33
+  IF `@33 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@33 `error !? `error `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 t `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 a `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 i `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 l `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2   `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 [  `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2  ] \@f1
+  \@f2
+  @f2 `@33 \@34
+  \@35
+  @35 `error !? \tail
   \last
   \init
   \length
   \foldl
-  \reverse
+  ;`foldl \x
+  \y
+  \@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 y x \@f1
+  \@f2
+  @f2 \reverse
   \foldr
-  \concat
-  \concatMap
+  ;\xss
+  foldr ++ \@f1
+  \@f2
+  @f2 xss \concat
+  ;\f
+  . concat `map f \concatMap
   \drop
-  \isDigit
-  \isUpper
-  \isLower
-  \and
-  \or
+  ;\c
+  ;`ord c \o
+  && `>= o `ord 0 `<= o `ord 9 \isDigit
+  ;\c
+  ;`ord c \o
+  && `>= o `ord A `<= o `ord Z \isUpper
+  ;\c
+  ;`ord c \o
+  && `>= o `ord a `<= o `ord z \isLower
+  ;`foldr && \@f1
+  \@f2
+  @f1 \and
+  ;`foldr || \@f1
+  \@f2
+  @f2 \or
   \elem
   \lookup
-  \compare
-  \repeat
+  ;\x
+  \y
+  IF `== EqInt x y \@f1
+  \@f2
+  \@f3
+  @f2 `IF `<= x y \@f1
+  \@f2
+  \@f3
+  @f1 \@f1
+  \@f2
+  \@f3
+  @f3 \compare
+  ;\x
+  \xs
+  xs `\f
+  \x
+  f `x x \x
+  f `x x \xs
+  \@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 x xs \repeat
   \zipWith
   \span
-  \break
+  ;\p
+  span `. not p \break
   \le
   \lines
-  \unlines
-  \listToMaybe
-  \find
-  \otherwise
-  \eof
+  ;`concatMap \s
+  ++ s `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2
+   \@f1
+  \@f2
+  @f2 \unlines
+  ;\@94
+  IF `@94 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@94 `error !? \@f1
+  \@f2
+  @f1 `@94 \@95
+  \@96
+  \@a1
+  \@f1
+  \@f2
+  @f2 @a1 @95 `error !? \listToMaybe
+  ;\p
+  . listToMaybe `filter p \find
+  ;\@f1
+  \@f2
+  @f1 \otherwise
+  ;`chr 256 \eof
   \fromStream
   \toStream
-  \putStr
-  \interact
-  \>>
-  \hSetBuffering
+  ;\@103
+  \@104
+  toStream @103 \putStr
+  ;\f
+  . toStream `. f fromStream \interact
+  ;\x
+  \y
+  y \>>
+  ;\x
+  \y
+  x \hSetBuffering
   \evenList
-  \main
-  \showsPrec#
-  main \@110
+  ;`interact `. unlines `. evenList lines \main
+  ;\@110
   \@111
   \@112
   \@113
-  ++ `show @110 @112 @113 `interact `. unlines `. evenList lines `\f
+  ++ `show @110 @112 @113 \showsPrec#
+  main `\f
   \x
   f `x x \x
   f `x x \evenList
@@ -91,14 +356,7 @@
   \@a2
   \@f1
   \@f2
-  @f1 @a1 @a2 @108 `evenList @109 `error !? `error !? \x
-  \y
-  x \x
-  \y
-  y \f
-  . toStream `. f fromStream \@103
-  \@104
-  toStream @103 `\f
+  @f1 @a1 @a2 @108 `evenList @109 `error !? `error !? `\f
   \x
   f `x x \x
   f `x x \toStream
@@ -136,32 +394,7 @@
   \@a2
   \@f1
   \@f2
-  @f1 @a1 @a2 @98 `fromStream @99 `chr 256 \@f1
-  \@f2
-  @f1 \p
-  . listToMaybe `filter p \@94
-  IF `@94 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@94 `error !? \@f1
-  \@f2
-  @f1 `@94 \@95
-  \@96
-  \@a1
-  \@f1
-  \@f2
-  @f2 @a1 @95 `error !? `concatMap \s
-  ++ s `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2
-   \@f1
-  \@f2
-  @f2 `\f
+  @f1 @a1 @a2 @98 `fromStream @99 `\f
   \x
   f `x x \x
   f `x x \lines
@@ -174,7 +407,8 @@
   \@f2
   @f1 `@88 `error !? \@f1
   \@f2
-  @f2 \@89
+  @f2 ;`break `== EqChar
+   @88 \@89
   @89 \@90
   \@91
   \@a1
@@ -191,8 +425,7 @@
   \@f2
   @f2 `@91 \@92
   \@93
-  lines @93 `error !? `break `== EqChar
-   @88 `\f
+  lines @93 `error !? `\f
   \x
   f `x x \x
   f `x x \le
@@ -230,7 +463,7 @@
   \@f2
   @f2 `@82 \@85
   \@86
-  \@87
+  ;`compare `ord @83 `ord @85 \@87
   IF `@87 \@f1
   \@f2
   @f1 \@f1
@@ -247,8 +480,7 @@
   \@f2
   @f2 `@87 `error !? `le @84 @86 `error !? `@87 `error !? `error !? \@f1
   \@f2
-  @f2 `compare `ord @83 `ord @85 `error !? `error Non-exhaustive patterns `error !? `error Non-exhaustive patterns \p
-  span `. not p `\f
+  @f2 `error !? `error Non-exhaustive patterns `error !? `error Non-exhaustive patterns `\f
   \x
   f `x x \x
   f `x x \span
@@ -269,7 +501,7 @@
   \@f2
   @f2 `@75 \@76
   \@77
-  IF `@74 @76 \@78
+  IF `@74 @76 ;`span @74 @77 \@78
   @78 \@79
   \@80
   \@a1
@@ -279,7 +511,7 @@
   \@a2
   \@f1
   \@f2
-  @f1 @a1 @a2 @76 @79 @80 `span @74 @77 `\@a1
+  @f1 @a1 @a2 @76 @79 @80 `\@a1
   \@a2
   \@f1
   @f1 @a1 @a2 \@f1
@@ -315,28 +547,7 @@
   \@f2
   @f2 `error !? \@f1
   \@f2
-  @f2 \x
-  \xs
-  xs `\f
-  \x
-  f `x x \x
-  f `x x \xs
-  \@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 x xs \x
-  \y
-  IF `== EqInt x y \@f1
-  \@f2
-  \@f3
-  @f2 `IF `<= x y \@f1
-  \@f2
-  \@f3
-  @f1 \@f1
-  \@f2
-  \@f3
-  @f3 `\f
+  @f2 `\f
   \x
   f `x x \x
   f `x x \lookup
@@ -375,17 +586,7 @@
   \@f2
   @f2 `@56 \@57
   \@58
-  || `== @54 @55 @57 `elem @54 @55 @58 `error !? `foldr || \@f1
-  \@f2
-  @f2 `foldr && \@f1
-  \@f2
-  @f1 \c
-  \o
-  && `>= o `ord a `<= o `ord z `ord c \c
-  \o
-  && `>= o `ord A `<= o `ord Z `ord c \c
-  \o
-  && `>= o `ord 0 `<= o `ord 9 `ord c `\f
+  || `== @54 @55 @57 `elem @54 @55 @58 `error !? `\f
   \x
   f `x x \x
   f `x x \drop
@@ -401,26 +602,14 @@
   \@f2
   @f2 `@51 \@52
   \@53
-  drop `- @50 1 @53 `error !? \f
-  . concat `map f \xss
-  foldr ++ \@f1
-  \@f2
-  @f2 xss `\f
+  drop `- @50 1 @53 `error !? `\f
   \x
   f `x x \x
   f `x x \foldr
   \f
   \z
   \xs
-  IF `null xs z `f `head xs `foldr f z `tail xs `foldl \x
-  \y
-  \@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 y x \@f1
-  \@f2
-  @f2 `\f
+  IF `null xs z `f `head xs `foldr f z `tail xs `\f
   \x
   f `x x \x
   f `x x \foldl
@@ -688,98 +877,7 @@
   \@f2
   @f1 @a1 @a2 t \@f1
   \@f2
-  @f2 \@33
-  IF `@33 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@33 `error !? `error `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 t `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 a `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 i `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 l `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2   `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 [  `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2  ] \@f1
-  \@f2
-  @f2 `@33 \@34
-  \@35
-  @35 `error !? \@30
-  IF `@30 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@30 `error !? `error `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 h `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 e `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 a `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 d `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2   `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 [  `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2  ] \@f1
-  \@f2
-  @f2 `@30 \@31
-  \@32
-  @31 `error !? \@27
-  IF `@27 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@27 `error !? \@f1
-  \@f2
-  @f1 `@27 \@28
-  \@29
-  \@f1
-  \@f2
-  @f2 `error !? `\f
+  @f2 `\f
   \x
   f `x x \x
   f `x x \filter
@@ -819,109 +917,11 @@
   \@f2
   @f1 @a1 @a2 `@19 @21 `map @19 @22 `error !? `@20 `error !? \@f1
   \@f2
-  @f2 \@16
-  @16 \@17
-  \@18
-  @18 \@13
-  @13 \@14
-  \@15
-  @14 \f
-  \x
-  f x \@114
-  \@115
-  \@116
-  IF `@115 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@115 `error !? `IF `@116 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@116 `error !? \@f1
-  \@f2
-  @f1 \@f1
-  \@f2
-  @f2 `IF `@116 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@116 `error !? \@f1
-  \@f2
-  @f2 `IF `@115 \_1
-  \_2
-  \@f1
-  \@f2
-  @f1 \@f1
-  \@f2
-  @f2 `@115 \@117
-  \@118
-  IF `@116 \_1
-  \_2
-  \@f1
-  \@f2
-  @f1 \@f1
-  \@f2
-  @f2 `@116 \@119
-  \@120
-  && `== @114 @117 @119 `== `Eq[] @114 @118 @120 `error !? `error Non-exhaustive patterns `error !? `error Non-exhaustive patterns \Eq#v870
-  \xs
-  \ys
-  not `== `Eq[] Eq#v870 xs ys \Eq#a
-  \@a1
-  \@a2
-  \@f1
-  @f1 @a1 @a2 `==#[] Eq#a `/=#[] Eq#a \@66
-  IF `@66 \@f1
-  \@f2
-  @f1 \@f1
-  \@f2
-  @f2 `@66 \@f1
-  \@f2
-  @f2 `error !? `@66 `error !? \@f1
-  \@f2
-  @f1 \p
-  \n
-  IF `< n 0 `. `showChar - `shows ShowInt `- 0 n \d
-  \m
-  IF `== EqInt m 0 `showChar d `. `showsPrec ShowInt p m `showChar d `div n 10 `chr `+ `ord 0 `mod n 10 `\f
+  @f2 `\f
   \x
   f `x x \x
   f `x x \ShowInt
   \@a1
   \@a2
   \@f1
-  @f1 @a1 @a2 showsPrec#Int `show# ShowInt \Show#v793
-  \x
-  showsPrec Show#v793 0 x \@f1
-  \@f2
-  @f2 \Show#v1
-  showsPrec Show#v1 0 \@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 \@10
-  @10 \@11
-  \@12
-  @12 \@7
-  @7 \@8
-  \@9
-  @8 `\@a1
-  \@a2
-  \@f1
-  @f1 @a1 @a2 &eq &neq `\@a1
-  \@a2
-  \@f1
-  @f1 @a1 @a2 &eq &neq \@4
-  @4 \@5
-  \@6
-  @6 \@1
-  @1 \@2
-  \@3
-  @2
+  @f1 @a1 @a2 showsPrec#Int `show# ShowInt

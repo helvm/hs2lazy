@@ -1,4 +1,897 @@
-` ` T \@1 ` @1 \@2 \@3 @2 \== ` ` T \@4 ` @4 \@5 \@6 @6 \/= ` ` T ` ` \@a1 \@a2 \@f1 ` ` @f1 @a1 @a2 &eq &neq \EqInt ` ` T ` ` \@a1 \@a2 \@f1 ` ` @f1 @a1 @a2 &eq &neq \EqChar ` ` T \@7 ` @7 \@8 \@9 @8 \showsPrec ` ` T \@10 ` @10 \@11 \@12 @12 \show ` ` T \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 \showChar ` ` T \Show#v1 ` ` showsPrec Show#v1 0 \shows ` ` T \Show#v771 \x ` ` ` ` showsPrec Show#v771 0 x \@f1 \@f2 @f2 \show# ` \ShowInt ` ` T \p \n ` ` ` IF ` ` < n 0 ` ` . ` showChar - ` ` shows ShowInt ` ` - 0 n ` ` T ` chr ` ` + ` ord 0 ` ` mod n 10 \d ` ` T ` ` div n 10 \m ` ` ` IF ` ` ` == EqInt m 0 ` showChar d ` ` . ` ` ` showsPrec ShowInt p m ` showChar d \showsPrec#Int ` ` T \@66 ` ` ` IF ` ` @66 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` @66 \@f1 \@f2 @f2 ` error !? ` ` @66 ` error !? \@f1 \@f2 @f1 \not ` ` T \Eq#a ` ` \@a1 \@a2 \@f1 ` ` @f1 @a1 @a2 ` ==#[] Eq#a ` /=#[] Eq#a \Eq[] ` ` T \Eq#v848 \xs \ys ` not ` ` ` == ` Eq[] Eq#v848 xs ys \/=#[] ` ` T \@109 \@110 \@111 ` ` ` IF ` ` @110 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @110 ` error !? ` ` ` IF ` ` @111 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @111 ` error !? \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` ` IF ` ` @111 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @111 ` error !? \@f1 \@f2 @f2 ` ` ` IF ` ` @110 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` @110 \@112 \@113 ` ` ` IF ` ` @111 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` @111 \@114 \@115 ` ` && ` ` ` == @109 @112 @114 ` ` ` == ` Eq[] @109 @113 @115 ` error !? ` error Non-exhaustive patterns ` error !? ` error Non-exhaustive patterns \==#[] ` ` T \f \x ` f x \$ ` ` T \@13 ` @13 \@14 \@15 @14 \fst ` ` T \@16 ` @16 \@17 \@18 @18 \snd ` \map ` \filter ` ` T \@27 ` ` ` IF ` ` @27 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @27 ` error !? \@f1 \@f2 @f1 ` ` @27 \@28 \@29 \@f1 \@f2 @f2 ` error !? \null ` ` T \@30 ` ` ` IF ` ` @30 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @30 ` error !? ` error ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 h ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 e ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 a ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 d ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2   ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 [  ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2  ] \@f1 \@f2 @f2 ` ` @30 \@31 \@32 @31 ` error !? \head ` ` T \@33 ` ` ` IF ` ` @33 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @33 ` error !? ` error ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 t ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 a ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 i ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 l ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2   ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 [  ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2  ] \@f1 \@f2 @f2 ` ` @33 \@34 \@35 @35 ` error !? \tail ` \last ` \init ` \length ` \foldl ` ` T ` ` foldl \x \y ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 y x \@f1 \@f2 @f2 \reverse ` \foldr ` ` T \xss ` ` ` foldr ++ \@f1 \@f2 @f2 xss \concat ` ` T \f ` ` . concat ` map f \concatMap ` \drop ` ` T \c ` ` T ` ord c \o ` ` && ` ` >= o ` ord 0 ` ` <= o ` ord 9 \isDigit ` ` T \c ` ` T ` ord c \o ` ` && ` ` >= o ` ord A ` ` <= o ` ord Z \isUpper ` ` T \c ` ` T ` ord c \o ` ` && ` ` >= o ` ord a ` ` <= o ` ord z \isLower ` ` T ` ` foldr && \@f1 \@f2 @f1 \and ` ` T ` ` foldr || \@f1 \@f2 @f2 \or ` \elem ` \lookup ` ` T \x \y ` ` ` IF ` ` ` == EqInt x y \@f1 \@f2 \@f3 @f2 ` ` ` IF ` ` <= x y \@f1 \@f2 \@f3 @f1 \@f1 \@f2 \@f3 @f3 \compare ` ` T \x ` \xs xs ` \f ` \x ` f ` x x \x ` f ` x x \xs ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 x xs \repeat ` \zipWith ` \span ` ` T \p ` span ` ` . not p \break ` \le ` \lines ` ` T ` concatMap \s ` ` ++ s ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2
-   \@f1 \@f2 @f2 \unlines ` ` T \@94 ` ` ` IF ` ` @94 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @94 ` error !? \@f1 \@f2 @f1 ` ` @94 \@95 \@96 ` \@a1 \@f1 \@f2 ` @f2 @a1 @95 ` error !? \listToMaybe ` ` T \p ` ` . listToMaybe ` filter p \find ` ` T \@f1 \@f2 @f1 \otherwise ` ` T ` chr 256 \eof ` \fromStream ` \toStream ` ` T \@103 \@104 ` toStream @103 \putStr ` ` T \f ` ` . toStream ` ` . f fromStream \interact ` ` T \x \y y \>> ` ` T \x \y x \hSetBuffering ` ` T ` interact ` ` . unlines ` ` . reverse lines \main ` ` T \@105 \@106 \@107 \@108 ` ` ++ ` ` show @105 @107 @108 \showsPrec# main ` \f ` \x ` f ` x x \x ` f ` x x \toStream \@100 ` ` ` IF ` ` @100 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @100 ` error !? ` ` $ ` \@a1 \@a2 \@f1 ` ` @f1 @a1 @a2
-   ` ` \@a1 \@a2 \@f1 ` ` @f1 @a1 @a2 eof ` toStream \@f1 \@f2 @f2 ` ` @100 \@101 \@102 ` ` \@a1 \@a2 \@f1 ` ` @f1 @a1 @a2 @101 ` toStream @102 ` error !? ` \f ` \x ` f ` x x \x ` f ` x x \fromStream \@97 ` @97 \@98 \@99 ` ` ` IF ` ` <= 256 ` ord @98 \@f1 \@f2 @f2 ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 @98 ` fromStream @99 ` \f ` \x ` f ` x x \x ` f ` x x \lines \@88 ` ` ` IF ` ` @88 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @88 ` error !? \@f1 \@f2 @f2 ` ` T ` ` break ` ` == EqChar
-   @88 \@89 ` @89 \@90 \@91 ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 @90 ` ` ` IF ` ` @91 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @91 ` error !? \@f1 \@f2 @f2 ` ` @91 \@92 \@93 ` lines @93 ` error !? ` \f ` \x ` f ` x x \x ` f ` x x \le \@81 \@82 ` ` ` IF ` ` @81 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @81 ` error !? \@f1 \@f2 @f1 ` ` ` IF ` ` @82 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @82 ` error !? \@f1 \@f2 @f2 ` ` ` IF ` ` @81 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` @81 \@83 \@84 ` ` ` IF ` ` @82 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` @82 \@85 \@86 ` ` T ` ` compare ` ord @83 ` ord @85 \@87 ` ` ` IF ` ` ` @87 \@f1 \@f2 @f1 \@f1 \@f2 @f2 \@f1 \@f2 @f2 ` ` ` @87 \@f1 \@f2 @f1 ` error !? ` error !? ` ` ` IF ` ` ` @87 \@f1 \@f2 @f2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` ` @87 ` error !? ` ` le @84 @86 ` error !? ` ` ` @87 ` error !? ` error !? \@f1 \@f2 @f2 ` error !? ` error Non-exhaustive patterns ` error !? ` error Non-exhaustive patterns ` \f ` \x ` f ` x x \x ` f ` x x \span \@74 \@75 ` ` ` IF ` ` @75 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @75 ` error !? ` ` \@a1 \@a2 \@f1 ` ` @f1 @a1 @a2 \@f1 \@f2 @f2 \@f1 \@f2 @f2 ` ` @75 \@76 \@77 ` ` ` IF ` @74 @76 ` ` T ` ` span @74 @77 \@78 ` @78 \@79 \@80 ` ` \@a1 \@a2 \@f1 ` ` @f1 @a1 @a2 ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 @76 @79 @80 ` ` \@a1 \@a2 \@f1 ` ` @f1 @a1 @a2 \@f1 \@f2 @f2 @75 ` error !? ` \f ` \x ` f ` x x \x ` f ` x x \zipWith \@67 \@68 \@69 ` ` ` IF ` ` @68 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` @68 \@70 \@71 ` ` ` IF ` ` @69 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` @69 \@72 \@73 ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 ` ` @67 @70 @72 ` ` ` zipWith @67 @71 @73 ` error !? \@f1 \@f2 @f2 ` error !? \@f1 \@f2 @f2 ` \f ` \x ` f ` x x \x ` f ` x x \lookup \@59 \@60 \@61 ` ` ` IF ` ` @61 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` @61 \@62 \@63 ` @62 \@64 \@65 ` ` ` IF ` ` ` == @59 @60 @64 ` \@a1 \@f1 \@f2 ` @f2 @a1 @65 ` ` ` lookup @59 @60 @63 ` error !? ` ` @61 ` error !? \@f1 \@f2 @f1 ` \f ` \x ` f ` x x \x ` f ` x x \elem \@54 \@55 \@56 ` ` ` IF ` ` @56 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @56 ` error !? \@f1 \@f2 @f2 ` ` @56 \@57 \@58 ` ` || ` ` ` == @54 @55 @57 ` ` ` elem @54 @55 @58 ` error !? ` \f ` \x ` f ` x x \x ` f ` x x \drop \@50 \@51 ` ` ` IF ` ` &eq @50 0 @51 ` ` ` IF ` ` @51 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @51 ` error !? \@f1 \@f2 @f2 ` ` @51 \@52 \@53 ` ` drop ` ` - @50 1 @53 ` error !? ` \f ` \x ` f ` x x \x ` f ` x x \foldr \f \z \xs ` ` ` IF ` null xs z ` ` f ` head xs ` ` ` foldr f z ` tail xs ` \f ` \x ` f ` x x \x ` f ` x x \foldl \@45 \@46 \@47 ` ` ` IF ` ` @47 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @47 ` error !? @46 ` ` @47 \@48 \@49 ` ` ` foldl @45 ` ` @45 @46 @48 @49 ` error !? ` \f ` \x ` f ` x x \x ` f ` x x \length \@42 ` ` ` IF ` ` @42 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @42 ` error !? 0 ` ` @42 \@43 \@44 ` ` + 1 ` length @44 ` error !? ` \f ` \x ` f ` x x \x ` f ` x x \init \@39 ` ` ` IF ` ` @39 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` @39 \@40 \@41 ` ` ` IF ` ` @41 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @41 ` error !? \@f1 \@f2 @f2 ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 @40 ` init @41 ` error !? ` ` @39 ` error !? ` error ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 P ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 r ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 e ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 l ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 u ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 d ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 e ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 . ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 i ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 n ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 i ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 t ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 : ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2   ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 e ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 m ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 p ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 t ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 y ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2   ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 l ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 i ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 s ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 t \@f1 \@f2 @f2 ` \f ` \x ` f ` x x \x ` f ` x x \last \@36 ` ` ` IF ` ` @36 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` @36 \@37 \@38 ` ` ` IF ` ` @38 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @38 ` error !? @37 ` last @38 ` error !? ` ` @36 ` error !? ` error ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 P ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 r ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 e ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 l ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 u ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 d ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 e ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 . ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 l ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 a ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 s ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 t ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 : ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2   ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 e ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 m ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 p ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 t ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 y ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2   ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 l ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 i ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 s ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 t \@f1 \@f2 @f2 ` \f ` \x ` f ` x x \x ` f ` x x \filter \@23 \@24 ` ` ` IF ` ` @24 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 ` ` @24 ` error !? \@f1 \@f2 @f2 ` ` @24 \@25 \@26 ` ` ` IF ` @23 @25 ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 @25 ` ` filter @23 @26 ` ` filter @23 @26 ` error !? ` \f ` \x ` f ` x x \x ` f ` x x \map \@19 \@20 ` ` ` IF ` ` @20 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 ` ` @20 \@21 \@22 ` ` \@a1 \@a2 \@f1 \@f2 ` ` @f1 @a1 @a2 ` @19 @21 ` ` map @19 @22 ` error !? ` ` @20 ` error !? \@f1 \@f2 @f2 ` \f ` \x ` f ` x x \x ` f ` x x \ShowInt ` ` \@a1 \@a2 \@f1 ` ` @f1 @a1 @a2 showsPrec#Int ` show# ShowInt
+\==
+\/=
+\EqInt
+\EqChar
+\showsPrec
+\show
+\showChar
+\shows
+\show#
+\ShowInt
+\showsPrec#Int
+\not
+\Eq[]
+  \/=#[]
+  \==#[]
+  \$
+  \fst
+  \snd
+  \map
+  \filter
+  \null
+  \head
+  \tail
+  \last
+  \init
+  \length
+  \foldl
+  \reverse
+  \foldr
+  \concat
+  \concatMap
+  \drop
+  \isDigit
+  \isUpper
+  \isLower
+  \and
+  \or
+  \elem
+  \lookup
+  \compare
+  \repeat
+  \zipWith
+  \span
+  \break
+  \le
+  \lines
+  \unlines
+  \listToMaybe
+  \find
+  \otherwise
+  \eof
+  \fromStream
+  \toStream
+  \putStr
+  \interact
+  \>>
+  \hSetBuffering
+  \main
+  \showsPrec#
+  main \@105
+  \@106
+  \@107
+  \@108
+  ++ `show @105 @107 @108 `interact `. unlines `. reverse lines \x
+  \y
+  x \x
+  \y
+  y \f
+  . toStream `. f fromStream \@103
+  \@104
+  toStream @103 `\f
+  \x
+  f `x x \x
+  f `x x \toStream
+  \@100
+  IF `@100 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@100 `error !? `$ `\@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2
+   `\@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 eof `toStream \@f1
+  \@f2
+  @f2 `@100 \@101
+  \@102
+  \@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 @101 `toStream @102 `error !? `\f
+  \x
+  f `x x \x
+  f `x x \fromStream
+  \@97
+  @97 \@98
+  \@99
+  IF `<= 256 `ord @98 \@f1
+  \@f2
+  @f2 `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 @98 `fromStream @99 `chr 256 \@f1
+  \@f2
+  @f1 \p
+  . listToMaybe `filter p \@94
+  IF `@94 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@94 `error !? \@f1
+  \@f2
+  @f1 `@94 \@95
+  \@96
+  \@a1
+  \@f1
+  \@f2
+  @f2 @a1 @95 `error !? `concatMap \s
+  ++ s `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2
+   \@f1
+  \@f2
+  @f2 `\f
+  \x
+  f `x x \x
+  f `x x \lines
+  \@88
+  IF `@88 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@88 `error !? \@f1
+  \@f2
+  @f2 \@89
+  @89 \@90
+  \@91
+  \@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 @90 `IF `@91 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@91 `error !? \@f1
+  \@f2
+  @f2 `@91 \@92
+  \@93
+  lines @93 `error !? `break `== EqChar
+   @88 `\f
+  \x
+  f `x x \x
+  f `x x \le
+  \@81
+  \@82
+  IF `@81 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@81 `error !? \@f1
+  \@f2
+  @f1 `IF `@82 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@82 `error !? \@f1
+  \@f2
+  @f2 `IF `@81 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@81 \@83
+  \@84
+  IF `@82 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@82 \@85
+  \@86
+  \@87
+  IF `@87 \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f2 `@87 \@f1
+  \@f2
+  @f1 `error !? `error !? `IF `@87 \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@87 `error !? `le @84 @86 `error !? `@87 `error !? `error !? \@f1
+  \@f2
+  @f2 `compare `ord @83 `ord @85 `error !? `error Non-exhaustive patterns `error !? `error Non-exhaustive patterns \p
+  span `. not p `\f
+  \x
+  f `x x \x
+  f `x x \span
+  \@74
+  \@75
+  IF `@75 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@75 `error !? `\@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f2 `@75 \@76
+  \@77
+  IF `@74 @76 \@78
+  @78 \@79
+  \@80
+  \@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 @76 @79 @80 `span @74 @77 `\@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 \@f1
+  \@f2
+  @f2 @75 `error !? `\f
+  \x
+  f `x x \x
+  f `x x \zipWith
+  \@67
+  \@68
+  \@69
+  IF `@68 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@68 \@70
+  \@71
+  IF `@69 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@69 \@72
+  \@73
+  \@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 `@67 @70 @72 `zipWith @67 @71 @73 `error !? \@f1
+  \@f2
+  @f2 `error !? \@f1
+  \@f2
+  @f2 \x
+  \xs
+  xs `\f
+  \x
+  f `x x \x
+  f `x x \xs
+  \@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 x xs \x
+  \y
+  IF `== EqInt x y \@f1
+  \@f2
+  \@f3
+  @f2 `IF `<= x y \@f1
+  \@f2
+  \@f3
+  @f1 \@f1
+  \@f2
+  \@f3
+  @f3 `\f
+  \x
+  f `x x \x
+  f `x x \lookup
+  \@59
+  \@60
+  \@61
+  IF `@61 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@61 \@62
+  \@63
+  @62 \@64
+  \@65
+  IF `== @59 @60 @64 `\@a1
+  \@f1
+  \@f2
+  @f2 @a1 @65 `lookup @59 @60 @63 `error !? `@61 `error !? \@f1
+  \@f2
+  @f1 `\f
+  \x
+  f `x x \x
+  f `x x \elem
+  \@54
+  \@55
+  \@56
+  IF `@56 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@56 `error !? \@f1
+  \@f2
+  @f2 `@56 \@57
+  \@58
+  || `== @54 @55 @57 `elem @54 @55 @58 `error !? `foldr || \@f1
+  \@f2
+  @f2 `foldr && \@f1
+  \@f2
+  @f1 \c
+  \o
+  && `>= o `ord a `<= o `ord z `ord c \c
+  \o
+  && `>= o `ord A `<= o `ord Z `ord c \c
+  \o
+  && `>= o `ord 0 `<= o `ord 9 `ord c `\f
+  \x
+  f `x x \x
+  f `x x \drop
+  \@50
+  \@51
+  IF `&eq @50 0 @51 `IF `@51 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@51 `error !? \@f1
+  \@f2
+  @f2 `@51 \@52
+  \@53
+  drop `- @50 1 @53 `error !? \f
+  . concat `map f \xss
+  foldr ++ \@f1
+  \@f2
+  @f2 xss `\f
+  \x
+  f `x x \x
+  f `x x \foldr
+  \f
+  \z
+  \xs
+  IF `null xs z `f `head xs `foldr f z `tail xs `foldl \x
+  \y
+  \@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 y x \@f1
+  \@f2
+  @f2 `\f
+  \x
+  f `x x \x
+  f `x x \foldl
+  \@45
+  \@46
+  \@47
+  IF `@47 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@47 `error !? @46 `@47 \@48
+  \@49
+  foldl @45 `@45 @46 @48 @49 `error !? `\f
+  \x
+  f `x x \x
+  f `x x \length
+  \@42
+  IF `@42 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@42 `error !? 0 `@42 \@43
+  \@44
+  + 1 `length @44 `error !? `\f
+  \x
+  f `x x \x
+  f `x x \init
+  \@39
+  IF `@39 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@39 \@40
+  \@41
+  IF `@41 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@41 `error !? \@f1
+  \@f2
+  @f2 `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 @40 `init @41 `error !? `@39 `error !? `error `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 P `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 r `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 e `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 l `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 u `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 d `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 e `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 . `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 i `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 n `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 i `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 t `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 : `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2   `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 e `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 m `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 p `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 t `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 y `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2   `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 l `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 i `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 s `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 t \@f1
+  \@f2
+  @f2 `\f
+  \x
+  f `x x \x
+  f `x x \last
+  \@36
+  IF `@36 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@36 \@37
+  \@38
+  IF `@38 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@38 `error !? @37 `last @38 `error !? `@36 `error !? `error `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 P `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 r `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 e `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 l `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 u `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 d `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 e `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 . `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 l `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 a `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 s `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 t `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 : `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2   `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 e `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 m `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 p `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 t `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 y `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2   `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 l `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 i `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 s `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 t \@f1
+  \@f2
+  @f2 \@33
+  IF `@33 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@33 `error !? `error `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 t `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 a `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 i `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 l `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2   `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 [  `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2  ] \@f1
+  \@f2
+  @f2 `@33 \@34
+  \@35
+  @35 `error !? \@30
+  IF `@30 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@30 `error !? `error `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 h `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 e `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 a `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 d `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2   `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 [  `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2  ] \@f1
+  \@f2
+  @f2 `@30 \@31
+  \@32
+  @31 `error !? \@27
+  IF `@27 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@27 `error !? \@f1
+  \@f2
+  @f1 `@27 \@28
+  \@29
+  \@f1
+  \@f2
+  @f2 `error !? `\f
+  \x
+  f `x x \x
+  f `x x \filter
+  \@23
+  \@24
+  IF `@24 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@24 `error !? \@f1
+  \@f2
+  @f2 `@24 \@25
+  \@26
+  IF `@23 @25 `\@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 @25 `filter @23 @26 `filter @23 @26 `error !? `\f
+  \x
+  f `x x \x
+  f `x x \map
+  \@19
+  \@20
+  IF `@20 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@20 \@21
+  \@22
+  \@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 `@19 @21 `map @19 @22 `error !? `@20 `error !? \@f1
+  \@f2
+  @f2 \@16
+  @16 \@17
+  \@18
+  @18 \@13
+  @13 \@14
+  \@15
+  @14 \f
+  \x
+  f x \@109
+  \@110
+  \@111
+  IF `@110 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@110 `error !? `IF `@111 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@111 `error !? \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `IF `@111 \_1
+  \_2
+  \@f1
+  \@f2
+  @f2 \@f1
+  \@f2
+  @f1 `@111 `error !? \@f1
+  \@f2
+  @f2 `IF `@110 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@110 \@112
+  \@113
+  IF `@111 \_1
+  \_2
+  \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@111 \@114
+  \@115
+  && `== @109 @112 @114 `== `Eq[] @109 @113 @115 `error !? `error Non-exhaustive patterns `error !? `error Non-exhaustive patterns \Eq#v848
+  \xs
+  \ys
+  not `== `Eq[] Eq#v848 xs ys \Eq#a
+  \@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 `==#[] Eq#a `/=#[] Eq#a \@66
+  IF `@66 \@f1
+  \@f2
+  @f1 \@f1
+  \@f2
+  @f2 `@66 \@f1
+  \@f2
+  @f2 `error !? `@66 `error !? \@f1
+  \@f2
+  @f1 \p
+  \n
+  IF `< n 0 `. `showChar - `shows ShowInt `- 0 n \d
+  \m
+  IF `== EqInt m 0 `showChar d `. `showsPrec ShowInt p m `showChar d `div n 10 `chr `+ `ord 0 `mod n 10 `\f
+  \x
+  f `x x \x
+  f `x x \ShowInt
+  \@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 showsPrec#Int `show# ShowInt \Show#v771
+  \x
+  showsPrec Show#v771 0 x \@f1
+  \@f2
+  @f2 \Show#v1
+  showsPrec Show#v1 0 \@a1
+  \@a2
+  \@f1
+  \@f2
+  @f1 @a1 @a2 \@10
+  @10 \@11
+  \@12
+  @12 \@7
+  @7 \@8
+  \@9
+  @8 `\@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 &eq &neq `\@a1
+  \@a2
+  \@f1
+  @f1 @a1 @a2 &eq &neq \@4
+  @4 \@5
+  \@6
+  @6 \@1
+  @1 \@2
+  \@3
+  @2

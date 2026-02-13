@@ -1,0 +1,20 @@
+;\@1 @1 \@2 \@3 @2 \==
+  ;\@4 @4 \@5 \@6 @6 \/=
+  ;`\@a1 \@a2 \@f1 @f1 @a1 @a2 &eq &neq \EqInt
+  ;`\@a1 \@a2 \@f1 @f1 @a1 @a2 &eq &neq \EqChar
+  ;\@7 @7 \@8 \@9 @8 \showsPrec
+  ;\@10 @10 \@11 \@12 @12 \show
+  ;\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 \showChar
+  ;\Show#v1 showsPrec Show#v1 0 \shows
+  ;\Show#v2749 \x showsPrec Show#v2749 0 x \@f1 \@f2 @f2 \show#
+  \ShowInt
+  ;\p \n IF `< n 0 `. `showChar - `shows ShowInt `- 0 n ;`chr `+ `ord 0 `mod n 10 \d
+  ;`div n 10 \m
+  IF `== EqInt m 0 `showChar d `. `showsPrec ShowInt p m `showChar d \showsPrec#Int
+  ;\@66 IF `@66 \@f1 \@f2 @f1 \@f1 \@f2 @f2 `@66 \@f1 \@f2 @f2 `error !? `@66 `error !? \@f1 \@f2 @f1 \not
+  ;\Eq#a \@a1 \@a2 \@f1 @f1 @a1 @a2 `==#[] Eq#a `/=#[] Eq#a \Eq[]
+  ;\Eq#v2826 \xs \ys not `== `Eq[] Eq#v2826 xs ys \/=#[]
+  ;\@339 \@340 \@341 IF `@340 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 `@340 `error !? `IF `@341 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 `@341 `error !? \@f1 \@f2 @f1 \@f1 \@f2 @f2 `IF `@341 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 `@341 `error !? \@f1 \@f2 @f2 `IF `@340 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 `@340 \@342 \@343 IF `@341 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 `@341 \@344 \@345 && `== @339 @342 @344 `== `Eq[] @339 @343 @345 `error !? `error Non-exhaustive patterns `error !? `error Non-exhaustive patterns \==#[]
+  \ShowObject
+  ;\@346 \@347 IF `&eq @346 0 `IF `@347 \_1 \_2 \@f1 \@f2 @f1 \_1 \@f1 \@f2 @f2 \_1 \@f1 \@f2 @f2 \_1 \@f1 \@f2 @f2 `@347 \@348 \@349 . `showChar
+    (  `. `showsPrec ShowObject 0 @348 `showsPrec ShowObject 1 @349 `error !? `error !? `error !? `IF `@347 \_1 \_2 \@f1 \@f2 @f2 \_1 \@f1 \@f2 @f1 \_1 \@f1 \@f2 @f2 \_1 \@f1 \@f2 @f2 `@347 `error !? \@350 showsPrec ShowInt 0 @350 `error !? `error !? `IF `@347 \_1 \_2 \@f1 \@f2 @f2 \_1 \@f1 \@f2 @f2 \_1 \@f1 \@f2 @f2 \_1 \@f1 \@f2 @f1 `@347 `error !? `error !? `error !? \@351 ++ `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 < `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 p `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 r `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 o `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 c `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 e `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 d `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 u `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 r `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 e `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 > \@f1 \@f2 @f2 `@347 `error !? `error !? \@352 ++ @352 `error !? `IF `&eq @346 1 `IF `@347 \_1 \_2 \@f1 \@f2 @f1 \_1 \@f1 \@f2 @f2 \_1 \@f1 \@f2 @f2 \_1 \@f1 \@f2 @f2 `@347 \@353 \@354 . `showChar   `. `showsPrec ShowObject 0 @353 `showsPrec ShowObject 1 @354 `error !? `error !? `error !? `IF `@347 \_1 \_2 \@f1 \@f2 @f2 \_1 \@f1 \@f2 @f2 \_1 \@f1 \@f2 @f1 \_1 \@f1 \@f2 @f2 `@347 `error !? `error !? \@355 IF `@355 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 `@355 \@356 \@357 IF `&eq @356 n `IF `@357 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 `@357 \@358 \@359 IF `&eq @358 i `IF `@359 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 `@359 \@360 \@361 IF `&eq @360 l `IF `@361 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 `@361 `error !? `showChar  ) `. `++ `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2   `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 . `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2   \@f1 \@f2 @f2 `. `showsPrec ShowObject 0 @347 `showChar

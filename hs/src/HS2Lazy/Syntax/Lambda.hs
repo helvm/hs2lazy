@@ -13,19 +13,22 @@ data UTerm
   deriving (Eq)
 
 instance Show UTerm where
-  show = showUTerm
+  show = showUTerm False
 
-showUTerm :: UTerm -> String
-showUTerm (UVar x) = x
-showUTerm (ULam x e) = "\\" ++ x ++ "\n" ++ showUTerm e
-showUTerm (ULit l) = show l
-showUTerm (UApp e1 e2) = showUTerm e1 ++ " " ++ showArg e2
-showUTerm (UT v f) = ";" ++ showArg v ++ " " ++ showUTerm f
+showUTerm :: Bool -> UTerm -> String
+showUTerm _ (UVar x) = x
+showUTerm b (ULam x e) = "\\" ++ x ++ lineOrSpace b ++ showUTerm b e
+showUTerm _ (ULit l) = show l
+showUTerm b (UApp e1 e2) = showUTerm b e1 ++ " " ++ showArg b e2
+showUTerm _ (UT v f) = ";" ++ showArg False v ++ " " ++ showUTerm True f
 
-showArg :: UTerm -> String
-showArg t
-  | isApp t = "`" ++ showUTerm t
-  | otherwise = showUTerm t
+lineOrSpace :: Bool -> String
+lineOrSpace b = if b then "\n" else " "
+
+showArg :: Bool -> UTerm -> String
+showArg b t
+  | isApp t = "`" ++ showUTerm b t
+  | otherwise = showUTerm b t
 
 isApp :: UTerm -> Bool
 isApp (UApp _ _) = True

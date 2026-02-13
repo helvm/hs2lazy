@@ -1,0 +1,18 @@
+let
+    { == @1 = @1
+        ( \@2 @3-> let
+            { e1 = @3 } in let
+            { e0 = @2 } in e0
+        )
+    } in let
+    { /= @4 = @4
+        ( \@5 @6-> let
+            { e1 = @6 } in let
+            { e0 = @5 } in e1
+        )
+    } in let
+    { EqInt = () &eq &neq } in let
+    { EqChar = () &eq &neq } in let
+    { main = let
+        { x = 0 } in x
+    } in main

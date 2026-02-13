@@ -1,362 +1,77 @@
-;\@1
-  @1 \@2
-  \@3
-  @2 \==
-  ;\@4
-  @4 \@5
-  \@6
-  @6 \/=
-  ;`\@a1
-  \@a2
-  \@f1
-  @f1 @a1 @a2 &eq &neq \EqInt
-  ;`\@a1
-  \@a2
-  \@f1
-  @f1 @a1 @a2 &eq &neq \EqChar
-  ;\@7
-  @7 \@8
-  \@9
-  @8 \showsPrec
-  ;\@10
-  @10 \@11
-  \@12
-  @12 \show
-  ;\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 \showChar
-  ;\Show#v1
-  showsPrec Show#v1 0 \shows
-  ;\Show#v793
-  \x
-  showsPrec Show#v793 0 x \@f1
-  \@f2
-  @f2 \show#
+;\@1 @1 \@2 \@3 @2 \==
+  ;\@4 @4 \@5 \@6 @6 \/=
+  ;`\@a1 \@a2 \@f1 @f1 @a1 @a2 &eq &neq \EqInt
+  ;`\@a1 \@a2 \@f1 @f1 @a1 @a2 &eq &neq \EqChar
+  ;\@7 @7 \@8 \@9 @8 \showsPrec
+  ;\@10 @10 \@11 \@12 @12 \show
+  ;\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 \showChar
+  ;\Show#v1 showsPrec Show#v1 0 \shows
+  ;\Show#v795 \x showsPrec Show#v795 0 x \@f1 \@f2 @f2 \show#
   \ShowInt
-  ;\p
-  \n
-  IF `< n 0 `. `showChar - `shows ShowInt `- 0 n ;`chr `+ `ord 0 `mod n 10 \d
+  ;\p \n IF `< n 0 `. `showChar - `shows ShowInt `- 0 n ;`chr `+ `ord 0 `mod n 10 \d
   ;`div n 10 \m
   IF `== EqInt m 0 `showChar d `. `showsPrec ShowInt p m `showChar d \showsPrec#Int
-  ;\@66
-  IF `@66 \@f1
-  \@f2
-  @f1 \@f1
-  \@f2
-  @f2 `@66 \@f1
-  \@f2
-  @f2 `error !? `@66 `error !? \@f1
-  \@f2
-  @f1 \not
-  ;\Eq#a
-  \@a1
-  \@a2
-  \@f1
-  @f1 @a1 @a2 `==#[] Eq#a `/=#[] Eq#a \Eq[]
-  ;\Eq#v870
-  \xs
-  \ys
-  not `== `Eq[] Eq#v870 xs ys \/=#[]
-  ;\@114
-  \@115
-  \@116
-  IF `@115 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@115 `error !? `IF `@116 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@116 `error !? \@f1
-  \@f2
-  @f1 \@f1
-  \@f2
-  @f2 `IF `@116 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@116 `error !? \@f1
-  \@f2
-  @f2 `IF `@115 \_1
-  \_2
-  \@f1
-  \@f2
-  @f1 \@f1
-  \@f2
-  @f2 `@115 \@117
-  \@118
-  IF `@116 \_1
-  \_2
-  \@f1
-  \@f2
-  @f1 \@f1
-  \@f2
-  @f2 `@116 \@119
-  \@120
-  && `== @114 @117 @119 `== `Eq[] @114 @118 @120 `error !? `error Non-exhaustive patterns `error !? `error Non-exhaustive patterns \==#[]
-  ;\f
-  \x
-  f x \$
-  ;\@13
-  @13 \@14
-  \@15
-  @14 \fst
-  ;\@16
-  @16 \@17
-  \@18
-  @18 \snd
+  ;\@66 IF `@66 \@f1 \@f2 @f1 \@f1 \@f2 @f2 `@66 \@f1 \@f2 @f2 `error !? `@66 `error !? \@f1 \@f2 @f1 \not
+  ;\Eq#a \@a1 \@a2 \@f1 @f1 @a1 @a2 `==#[] Eq#a `/=#[] Eq#a \Eq[]
+  ;\Eq#v872 \xs \ys not `== `Eq[] Eq#v872 xs ys \/=#[]
+  ;\@112 \@113 \@114 IF `@113 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 `@113 `error !? `IF `@114 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 `@114 `error !? \@f1 \@f2 @f1 \@f1 \@f2 @f2 `IF `@114 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 `@114 `error !? \@f1 \@f2 @f2 `IF `@113 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 `@113 \@115 \@116 IF `@114 \_1 \_2 \@f1 \@f2 @f1 \@f1 \@f2 @f2 `@114 \@117 \@118 && `== @112 @115 @117 `== `Eq[] @112 @116 @118 `error !? `error Non-exhaustive patterns `error !? `error Non-exhaustive patterns \==#[]
+  ;\f \x f x \$
+  ;\@13 @13 \@14 \@15 @14 \fst
+  ;\@16 @16 \@17 \@18 @18 \snd
   \map
   \filter
-  ;\@27
-  IF `@27 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@27 `error !? \@f1
-  \@f2
-  @f1 `@27 \@28
-  \@29
-  \@f1
-  \@f2
-  @f2 `error !? \null
-  ;\@30
-  IF `@30 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@30 `error !? `error `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 h `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 e `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 a `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 d `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2   `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 [  `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2  ] \@f1
-  \@f2
-  @f2 `@30 \@31
-  \@32
-  @31 `error !? \head
-  ;\@33
-  IF `@33 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@33 `error !? `error `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 t `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 a `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 i `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 l `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2   `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 [  `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2  ] \@f1
-  \@f2
-  @f2 `@33 \@34
-  \@35
-  @35 `error !? \tail
+  ;\@27 IF `@27 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 `@27 `error !? \@f1 \@f2 @f1 `@27 \@28 \@29 \@f1 \@f2 @f2 `error !? \null
+  ;\@30 IF `@30 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 `@30 `error !? `error `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 h `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 e `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 a `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 d `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2   `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 [  `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2  ] \@f1 \@f2 @f2 `@30 \@31 \@32 @31 `error !? \head
+  ;\@33 IF `@33 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 `@33 `error !? `error `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 t `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 a `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 i `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 l `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2   `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 [  `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2  ] \@f1 \@f2 @f2 `@33 \@34 \@35 @35 `error !? \tail
   \last
   \init
   \length
   \foldl
-  ;`foldl \x
-  \y
-  \@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 y x \@f1
-  \@f2
-  @f2 \reverse
+  ;`foldl \x \y \@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 y x \@f1 \@f2 @f2 \reverse
   \foldr
-  ;\xss
-  foldr ++ \@f1
-  \@f2
-  @f2 xss \concat
-  ;\f
-  . concat `map f \concatMap
+  ;\xss foldr ++ \@f1 \@f2 @f2 xss \concat
+  ;\f . concat `map f \concatMap
   \drop
-  ;\c
-  ;`ord c \o
+  ;\c ;`ord c \o
   && `>= o `ord 0 `<= o `ord 9 \isDigit
-  ;\c
-  ;`ord c \o
+  ;\c ;`ord c \o
   && `>= o `ord A `<= o `ord Z \isUpper
-  ;\c
-  ;`ord c \o
+  ;\c ;`ord c \o
   && `>= o `ord a `<= o `ord z \isLower
-  ;`foldr && \@f1
-  \@f2
-  @f1 \and
-  ;`foldr || \@f1
-  \@f2
-  @f2 \or
+  ;`foldr && \@f1 \@f2 @f1 \and
+  ;`foldr || \@f1 \@f2 @f2 \or
   \elem
   \lookup
-  ;\x
-  \y
-  IF `== EqInt x y \@f1
-  \@f2
-  \@f3
-  @f2 `IF `<= x y \@f1
-  \@f2
-  \@f3
-  @f1 \@f1
-  \@f2
-  \@f3
-  @f3 \compare
-  ;\x
-  \xs
-  xs `\f
-  \x
-  f `x x \x
-  f `x x \xs
-  \@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 x xs \repeat
+  ;\x \y IF `== EqInt x y \@f1 \@f2 \@f3 @f2 `IF `<= x y \@f1 \@f2 \@f3 @f1 \@f1 \@f2 \@f3 @f3 \compare
+  ;\x \xs xs `\f \x f `x x \x f `x x \xs \@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2 x xs \repeat
   \zipWith
   \span
-  ;\p
-  span `. not p \break
+  ;\p span `. not p \break
   \le
   \lines
-  ;`concatMap \s
-  ++ s `\@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2
-   \@f1
-  \@f2
-  @f2 \unlines
-  ;\@94
-  IF `@94 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@94 `error !? \@f1
-  \@f2
-  @f1 `@94 \@95
-  \@96
-  \@a1
-  \@f1
-  \@f2
-  @f2 @a1 @95 `error !? \listToMaybe
-  ;\p
-  . listToMaybe `filter p \find
-  ;\@f1
-  \@f2
-  @f1 \otherwise
+  ;`concatMap \s ++ s `\@a1 \@a2 \@f1 \@f2 @f1 @a1 @a2
+   \@f1 \@f2 @f2 \unlines
+  ;\@94 IF `@94 \_1 \_2 \@f1 \@f2 @f2 \@f1 \@f2 @f1 `@94 `error !? \@f1 \@f2 @f1 `@94 \@95 \@96 \@a1 \@f1 \@f2 @f2 @a1 @95 `error !? \listToMaybe
+  ;\p . listToMaybe `filter p \find
+  ;\@f1 \@f2 @f1 \otherwise
   ;`chr 256 \eof
   \fromStream
   \toStream
-  ;\@103
-  \@104
-  toStream @103 \putStr
-  ;\f
-  . toStream `. f fromStream \interact
-  ;\x
-  \y
-  y \>>
-  ;\x
-  \y
-  x \hSetBuffering
-  \evenList
-  ;`interact `. unlines `. evenList lines \main
-  ;\@110
-  \@111
-  \@112
-  \@113
-  ++ `show @110 @112 @113 \showsPrec#
+  ;\@103 \@104 toStream @103 \putStr
+  ;\f . toStream `. f fromStream \interact
+  ;\x \y y \>>
+  ;\x \y x \hSetBuffering
+  \tarai
+  ;`$ putStr `$ `show ShowInt `tarai 122 52 10 \main
+  ;\@108 \@109 \@110 \@111 ++ `show @108 @110 @111 \showsPrec#
   main `\f
   \x
   f `x x \x
-  f `x x \evenList
+  f `x x \tarai
   \@105
-  IF `@105 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@105 `error !? \@f1
-  \@f2
-  @f2 `@105 \@106
+  \@106
   \@107
-  IF `@107 \_1
-  \_2
-  \@f1
-  \@f2
-  @f2 \@f1
-  \@f2
-  @f1 `@107 `error !? \@f1
-  \@f2
-  @f2 `@107 \@108
-  \@109
-  \@a1
-  \@a2
-  \@f1
-  \@f2
-  @f1 @a1 @a2 @108 `evenList @109 `error !? `error !? `\f
+  IF `<= @105 @106 @106 `IF otherwise `tarai `tarai `- @105 1 @106 @107 `tarai `- @106 1 @107 @105 `tarai `- @107 1 @105 @106 `error Non-exhaustive patterns `\f
   \x
   f `x x \x
   f `x x \toStream

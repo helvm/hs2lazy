@@ -69,7 +69,8 @@ test-suite hs2lazy-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      GoldenSpec
+      LibAppGoldenSpec
+      ScriptGoldenSpec
       Paths_hs2lazy
   hs-source-dirs:
       hs/test

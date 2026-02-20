@@ -1,5 +1,6 @@
-resolver: lts-24.28
+resolver: nightly-2026-02-10
 compiler-check: match-exact
+allow-newer: true
 packages:
   - .
 extra-deps:

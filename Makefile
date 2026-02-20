@@ -40,16 +40,16 @@ clean:
 .PHONY: all examples clean
 
 fmt:
-	stack exec -- ormolu --mode inplace $$(git ls-files '*.hs')
+	stack exec -- ormolu --mode inplace hs/**/*.hs
 
 fmt-check:
-	stack exec -- ormolu --mode check $$(git ls-files '*.hs')
+	stack exec -- ormolu --mode check hs/**/*.hs
 
 lint:
-	stack exec -- hlint .
+	stack exec -- hlint hs
 
 lint-fix:
-	stack exec -- hlint . --refactor --refactor-options="--inplace"
+	stack exec -- hlint hs --refactor --refactor-options="--inplace"
 
 build:
 	stack build

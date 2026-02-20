@@ -2,5 +2,3 @@ resolver: lts-24.28
 
 packages:
   - .
-
-compiler-check: match-exact

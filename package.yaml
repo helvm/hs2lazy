@@ -48,6 +48,11 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - hs2lazy
+  fmt:
+    main: Main.hs
+    source-dirs: .
+    ghc-options: -Wall
+    dependencies: []
 
 tests:
   hs2lazy-test:

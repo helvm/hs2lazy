@@ -1,1 +1,1 @@
-main = let {x = 0} in x
+main = let x = 0 in x

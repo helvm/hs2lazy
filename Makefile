@@ -49,7 +49,9 @@ lint:
 	stack exec -- hlint hs
 
 lint-fix:
-	stack exec -- hlint hs --refactor --refactor-options="--inplace"
+	for f in hs/**/*.hs; do \
+		stack exec -- hlint $$f --refactor --refactor-options="--inplace"; \
+	done
 
 build:
 	stack build

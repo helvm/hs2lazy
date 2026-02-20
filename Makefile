@@ -44,3 +44,15 @@ fmt:
 
 fmt-check:
 	stack exec -- ormolu --mode check $$(git ls-files '*.hs')
+
+lint:
+	stack exec -- hlint .
+
+lint-fix:
+	stack exec -- hlint . --refactor --refactor-options="--inplace"
+
+build:
+	stack build
+
+test:
+	stack test

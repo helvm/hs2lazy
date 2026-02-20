@@ -38,3 +38,9 @@ clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR) $(LAZY_DIR)
 
 .PHONY: all examples clean
+
+fmt:
+	stack exec -- ormolu --mode inplace $$(git ls-files '*.hs')
+
+fmt-check:
+	stack exec -- ormolu --mode check $$(git ls-files '*.hs')
